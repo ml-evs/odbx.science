@@ -12,3 +12,5 @@ jobs:
 
     steps:
     - uses: ml-evs/autovalidate_optimade@master
+      with: 
+          HOST_TO_VALIDATE: http://odbx.science

@@ -28,3 +28,8 @@ As of 02/12/19, the server runs as an HPCS OpenStack VM (quadcore Haswell, 8 GB 
 - The domain `odbx.science` was purchased until 2023 from Namecheap, which currently redirects to the public IP of the VM.
 - All `*@odbx.science` email addresses currently redirect to my personal account.
 - The domain came with a 1 year SSL certificate (~£4 year after), but free alternatives exists (consider e.g. `cert-bot`).
+
+
+## To-do
+
+- [ ] Investigate a "proper" web server/reverse proxy, e.g. `nginx` or `traefik`

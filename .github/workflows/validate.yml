@@ -1,4 +1,4 @@
-name: CI
+name: Scheduled validator
 
 on:
   push:
@@ -6,11 +6,10 @@ on:
      - cron:  '0 */1 * * *'
 
 jobs:
-  build:
-
+  validate:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: ml-evs/autovalidate_optimade@master
+    - name: validate
+      uses: ml-evs/autovalidate_optimade@master
       with: 
           host_to_validate: http://odbx.science

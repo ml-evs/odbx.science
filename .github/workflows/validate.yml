@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  schedule:
+     - cron:  '0 */1 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: ml-evs/autovalidate_optimade
+    - name: OPTiMaDe validator

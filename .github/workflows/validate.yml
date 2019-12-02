@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  push:
   schedule:
      - cron:  '0 */1 * * *'
 
@@ -11,4 +12,3 @@ jobs:
 
     steps:
     - uses: ml-evs/autovalidate_optimade
-    - name: OPTiMaDe validator

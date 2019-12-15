@@ -2,6 +2,12 @@
 
 This repo contains some notes about the server running at odbx.science. 
 
+This implementation of an OPTiMaDe server builds upon the reference server in
+the following way:
+
+- Additional routes from `odbx.science/<endpoint>` that mimic `odbx.science/optimade/<endpoint>` but
+  provides rich HTML displays of the data.
+
 ## Hardware 
 
 As of 02/12/19, the server runs as an HPCS OpenStack VM (quadcore Haswell, 8 GB RAM), with three virutal disks attached:
@@ -33,3 +39,4 @@ As of 02/12/19, the server runs as an HPCS OpenStack VM (quadcore Haswell, 8 GB 
 ## To-do
 
 - [ ] Investigate a "proper" web server/reverse proxy, e.g. `nginx` or `traefik`
+- [ ] Use Jinja2 templating engine to provide rich single-entry and multi-entry endpoints

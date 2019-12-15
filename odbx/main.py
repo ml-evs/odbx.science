@@ -1,3 +1,9 @@
+""" Lines suffixed with "# odbx" indicate that this line differs from
+the reference implementation or does not exist in the reference
+implementation.
+
+"""
+
 import json
 from pathlib import Path
 
@@ -6,6 +12,8 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from starlette.staticfiles import StaticFiles  # odbx
+
 from optimade.server.entry_collections import MongoCollection
 from optimade.server.config import CONFIG
 from optimade.server.routers import info, links, references, structures
@@ -13,6 +21,8 @@ from optimade.server.routers.utils import get_providers
 
 import optimade.server.exception_handlers as exc_handlers
 
+import odbx_routers.structures  # odbx
+import odbx_routers.home  # odbx
 
 app = FastAPI(
     title="OPTiMaDe API",
@@ -26,39 +36,6 @@ app = FastAPI(
     redoc_url="/optimade/extensions/redoc",
     openapi_url="/optimade/extensions/openapi.json",
 )
-
-test_paths = {
-    "structures": Path(__file__)
-    .resolve()
-    .parent.joinpath("tests/test_structures.json"),
-    "references": Path(__file__)
-    .resolve()
-    .parent.joinpath("tests/test_references.json"),
-    "links": Path(__file__).resolve().parent.joinpath("tests/test_links.json"),
-}
-if not CONFIG.use_real_mongo and (path.exists() for path in test_paths.values()):
-    import bson.json_util
-    from .routers import ENTRY_COLLECTIONS
-
-    def load_entries(endpoint_name: str, endpoint_collection: MongoCollection):
-        print(f"loading test {endpoint_name}...")
-        with open(test_paths[endpoint_name]) as f:
-            data = json.load(f)
-            print(f"inserting test {endpoint_name} into collection...")
-            endpoint_collection.collection.insert_many(
-                bson.json_util.loads(bson.json_util.dumps(data))
-            )
-        if endpoint_name == "links":
-            print(
-                "adding providers.json to links from github.com/Materials-Consortia/OPTiMaDe"
-            )
-            endpoint_collection.collection.insert_many(
-                bson.json_util.loads(bson.json_util.dumps(get_providers()))
-            )
-        print(f"done inserting test {endpoint_name}...")
-
-    for name, collection in ENTRY_COLLECTIONS.items():
-        load_entries(name, collection)
 
 
 app.add_exception_handler(StarletteHTTPException, exc_handlers.http_exception_handler)
@@ -88,6 +65,11 @@ for prefix in valid_prefixes:
     app.include_router(links.router, prefix=prefix)
     app.include_router(references.router, prefix=prefix)
     app.include_router(structures.router, prefix=prefix)
+
+rich_prefix = ""  # odbx
+app.include_router(odbx_routers.home.router, prefix=rich_prefix)  # odbx
+app.include_router(odbx_routers.structures.router, prefix=rich_prefix)  # odbx
+app.mount("/js", StaticFiles(directory="js"), name="js")  # odbx
 
 
 def update_schema(app):

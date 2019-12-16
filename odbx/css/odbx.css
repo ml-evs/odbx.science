@@ -1,0 +1,12 @@
+:root {
+    --odbx_main_color: blue;
+}
+
+.odbx_id {
+    font-family: monospace;
+    color: var(--odbx_main_color);
+    background-color: #D3D3D3;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border: 1px solid var(--odbx_main_color);
+    border-radius: 0.2em;
+}

@@ -21,8 +21,7 @@ from optimade.server.routers.utils import get_providers
 
 import optimade.server.exception_handlers as exc_handlers
 
-import odbx_routers.structures  # odbx
-import odbx_routers.home  # odbx
+from . import odbx_routers  # odbx
 
 app = FastAPI(
     title="OPTiMaDe API",
@@ -69,7 +68,10 @@ for prefix in valid_prefixes:
 rich_prefix = ""  # odbx
 app.include_router(odbx_routers.home.router, prefix=rich_prefix)  # odbx
 app.include_router(odbx_routers.structures.router, prefix=rich_prefix)  # odbx
-app.mount("/js", StaticFiles(directory="js"), name="js")  # odbx
+js_dir = Path(__file__).parent.joinpath("js")
+css_dir = Path(__file__).parent.joinpath("css")
+app.mount("/js", StaticFiles(directory=js_dir), name="js")  # odbx
+app.mount("/css", StaticFiles(directory=css_dir), name="css")  # odbx
 
 
 def update_schema(app):

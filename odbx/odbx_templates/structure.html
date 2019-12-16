@@ -8,19 +8,87 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <link rel="stylesheet" href=" {{ url_for('js', path='./lib/ChemDoodleWeb-8.0.0/install/ChemDoodleWeb.css') }}" type="text/css">
 <script src=" {{ url_for('js', path='./lib/ChemDoodleWeb-8.0.0/install/ChemDoodleWeb.js') }}", type="text/javascript"> </script>
-<div class="w3-main" style="display: flex; align-items: left; margin-left:340px;margin-right:40px">
 
-    <div id="info" style="margin: 20px; margin-top: 100px; margin-right: auto;">
-        <h1>{{ structure_info.data.id}}: {{ structure_info.data.attributes.chemical_formula_descriptive}}</h1>
-        <p> 
-        {{ structure_info.data.attributes._odbx_energy}}</br>
-        {{ structure_info.data.attributes.nsites }} atoms</br>
-        {{ structure_info.data.attributes._odbx_space_group.symbol }}</br>
-        {{ structure_info.data.attributes._odbx_thermodynamics}} </p>
+<div id="structure_header" style="align-items: left; margin-top: 100px; margin-left:340px;margin-right:40px">
+    <h1><span class="odbx_id">{{ structure_info['data']['id'] }}</span> {{ structure_info['data']['attributes']['chemical_formula_descriptive'] }}</h1>
+</div>
+<div class="w3-main" style="display: flex; align-items: left; margin-left:340px;margin-right:100px">
+    
+    <div id="crystal_info" style="margin: 30px">
+        <table style="align:center; text-align:center;">
+            <tr>
+                <td>{{ structure_info['data']['attributes']['nsites'] }} atoms</td>
+                <td>{{ structure_info['data']['attributes']['_odbx_num_formula_units'] }} formula units</td>
+            </tr>
+            <tr>
+                <th> Space group </th>
+            </tr>
+            <tr style="align:center; text-align: center">
+                <td style="align:center;text-align:center;font-family:monospace"> 
+                    {{ structure_info['data']['attributes']['_odbx_space_group']['symbol'] }}</p>
+                </td>
+            </tr>
+            <tr>
+                <th> Cell Volume (Å³) </th>
+            </tr>
+            <tr style="align:center; text-align: center">
+                <td style="align:center;text-align:center;font-family:monospace"> 
+                    {{ "{:4.3f}".format(structure_info['data']['attributes'].get('_odbx_cell_volume', 0.0)).replace('0.000', 'xxx') }}
+                </td>
+            </tr>
+            <tr>
+                <th> Lattice Vectors (Å) </th>
+            </tr>
+            <tr>
+                <td style="align:center;text-align:center;font-family:monospace"> 
+                    {% for vec in structure_info['data']['attributes']['lattice_vectors'] %}
+                        {% for elem in vec %}
+                        {{ "{:+4.3f}".format(elem).replace('+', '&nbsp;') | safe}}
+                        {% endfor %}
+                        </br>
+                        {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th> Cell Contents </th>
+            </tr>
+            <tr>
+                <td style="align:center;text-align:center;font-family:monospace"> 
+                    {% for atom in structure_info['data']['attributes']['species_at_sites'] %}
+                        {{ "{:3}".format(atom)}}
+                        {% for elem in structure_info['data']['attributes']['cartesian_site_positions'][loop.index-1] %}
+                            {{ "{:+4.3f}".format(elem).replace('+', '&nbsp;') | safe}}
+                        {% endfor %}
+                        </br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="info" style="margin: 30px">
+        <table style="align:center; text-align:center;">
+            <tr>
+                <th> Formation energy </th>
+            </tr>
+            <tr>
+                <td style="font-family:monospace">
+                    {{ "{}".format(structure_info['data']['attributes']['_odbx_thermodynamics'].get('formation_energy')) }} eV/atom
+                </td>
+            </tr>
+            <tr>
+                <th> Enthalpy </th>
+            </tr>
+            <tr>
+                <td style="font-family:monospace">
+                    {{ "{:4.4f}".format(structure_info['data']['attributes']['_odbx_thermodynamics'].get('enthalpy')) }} eV/atom
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- Viewer -->
-    <div id="viewer" data-cif="{{ odbx_cif_string }}" canvas-x="500" canvas-y="500" style="display: flex; margin: 20px; margin-top: 100px; margin-left: 100px; margin-right: 100px; border: 1px;">
+    <div id="viewer" data-cif="{{ odbx_cif_string }}" canvas-x="500" canvas-y="500" style="display:flex; margin: 30px">
         <script src=" {{ url_for('js', path='./chemdoodle_viewer.js') }}" type="text/javascript"></script>
     </div>
 </div>

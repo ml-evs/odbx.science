@@ -17,7 +17,8 @@ from optimade.server.entry_collections import MongoCollection, client
 from optimade.server.mappers import StructureMapper
 
 from optimade.server.routers.utils import get_entries, get_single_entry
-from odbx_templates import TEMPLATES
+
+from ..odbx_templates import TEMPLATES
 
 router = APIRouter()
 

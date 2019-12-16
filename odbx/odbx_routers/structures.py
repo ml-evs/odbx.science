@@ -17,13 +17,14 @@ from optimade.server.deps import SingleEntryQueryParams
 from optimade.server.entry_collections import MongoCollection, client
 
 from optimade.server.routers.utils import get_single_entry
-from odbx_mappers import StructureMapper
-from odbx_templates import TEMPLATES
+from ..odbx_mappers import StructureMapper
+from ..odbx_templates import TEMPLATES
+from ..utils import optimade_to_basic_cif
 
 router = APIRouter()
 
 
-with open(Path(__file__).resolve().parent.joinpath("test.cif"), "r",) as f:
+with open(Path(__file__).resolve().parent.joinpath("test.cif"), "r") as f:
     cif_string = "".join(
         [line for line in f.readlines() if not line.strip().startswith("#")]
     ).replace("'", "\\'")
@@ -53,21 +54,20 @@ def get_single_structure(
         response=EntryResponseOne,
     )
 
-    context = {
-        "request": request,
-        "entry_id": entry_id,
-    }
+    context = {"request": request, "entry_id": entry_id}
 
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)
+
+    print(dict(response)["data"])
 
     context.update(
         {
             "odbx_title": "odbx",
             "odbx_blurb": "the open database of xtals",
             "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
-            "odbx_cif_string": cif_string,
-            "structure_info": response,
+            "odbx_cif_string": optimade_to_basic_cif(response.data),
+            "structure_info": dict(response),
         }
     )
 

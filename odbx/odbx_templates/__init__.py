@@ -1,3 +1,5 @@
+from pathlib import Path
 from starlette.templating import Jinja2Templates
 
-TEMPLATES = Jinja2Templates(directory="./odbx_templates")
+template_dir = Path(__file__).parent
+TEMPLATES = Jinja2Templates(directory=[template_dir])

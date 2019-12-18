@@ -1,46 +1,130 @@
 :root {
-    --odbx_main_color: magenta;
-    --odbx_light_grey: #DCDCDC;
+    --odbx_main_color: #D485AD;
+    --odbx_light_grey: #f2f2f2;
+    --odbx_grey: #999999;
+    --odbx_dark_grey: #4E4E4E;
+    --odbx_pale_blue: #83A598;
+    --odbx_pale_green: #8EC07C;
+    --odbx_pale_yellow: #FFAF00;
+    --odbx_white: #FFFFFF;
+    --odbx_box_shadow: 0px 0px var(--odbx_dark_grey);
+    --odbx_border: solid 2px var(--odbx_dark_grey);
+    --odbx_border_radius: 0.4em;
+    --odbx_min_width: 800px;
 }
 
-.odbx_id {
+html {
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+body {    
+    background-color: var(--odbx_dark_grey);
+    padding: 0;
+    margin: 0;
+}
+
+body,h1,h2,h3,h4,h5 {
+    font-family: "Archivo Narrow", sans-serif;
+}
+
+body {
+    font-size: 16px;
+}
+
+
+.content {
+    width: var(--odbx_min_width);
+    display: flex;
+    border: 2px solid var(--odbx_dark_grey);
+    box-shadow: var(--odbx_box_shadow);
+    border-radius: 0;
+    flex-direction: column;
+    background-color: var(--odbx_light_grey);
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.odbx_id_font {
     font-family: monospace;
-    font-size: 0.8em;
-    vertical-align: middle;
-    padding: 0.1em 0.2em 0.2em 0.5em;
+    color: var(--odbx_main_color);
+    background-color: var(--odbx_white);
+    border: 1px solid var(--odbx_grey);
+    border-radius: var(--odbx_border_radius);
+    font-size: 1.2em;
+    text-decoration: underline wavy var(--odbx_main_color) 1px;
+    text-decoration-skip-ink: none;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    align: center;
+    text-align: center;
+
+}
+.odbx_id_box {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    align: center;
+    text-align: center;
+
 }
 
 .header_text {
     color: var(--odbx_main_color);
-    background-color: var(--odbx_light_grey);
+    background-color: var(--odbx_white);
+    box-shadow: var(--odbx_box_shadow);
     padding: 0.2em 0.2em 0.2em 0.5em;
-    border: 1px solid var(--odbx_main_color);
-    border-radius: 0.2em;
+    border: 1px solid var(--odbx_grey);
+    border-radius: 0.1em;
+    font-size: 1.4em;
 }
 
 .formula_title {
     color: black;
-    padding: 0.2em 0.2em 0.2em 0.5em;
+    font-family: Arial;
+    padding: 0;
+    padding-right: 0.2em;
+    -webkit-text-stroke: 1px black;
+}
+
+.odbx_title {
+    color: var(--odbx_main_color);
+    font-family: monospace, "Arial", "Archivo Narrow";
+    font-size: 2.4em;
+    padding: 150px;
 }
 
 th {
     background-color: var(--odbx_light_grey);
+    padding-top: 5px;
+    padding-bottom: 0px;
     align:center;
     text-align:center;
     font-weight: normal;
     font-size: 1.1em;
+    background-color: white;
+    border-radius: var(--odbx_border_radius);
+    width: auto;
 }
 
 td {
     font-family: monospace;
     align:center;
     text-align:center;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: var(--odbx_border_radius);
 }
 
 .columns {
     display: flex;
     align-items: left;
-    width: auto;
+    flex-wrap: wrap;
+    width: 100%;
     margin: auto;
     flex-direction: row;
     justify-content: center;
@@ -57,30 +141,239 @@ td {
 }
 
 table {
-    /*border: solid 1px black;*/
-    width: 150px;
+    border: 1px solid var(--odbx_grey);
+    width: 100%;
+    background-color: white;
+    border-radius: var(--odbx_border_radius);
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 .deck {
-    margin: 10px;
+    margin: 0px;
+    width: 160px;
+    padding: 10px;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.crystal_table {
-    width: 200px;
+.middle {
+    width: 300px;
 }
+
+.middle > table {
+    width: 100%;
+
+}
+
 
 .crystal_table th {
-    background-color: #ccffff;
+    color: var(--odbx_pale_green);
+}
+
+.cell_table th {
+    color: var(--odbx_main_color);
 }
 
 .energy_table th {
-    background-color: #ccccff;
+    color: var(--odbx_pale_blue);
 }
     
 .dft_table th {
-    background-color: #ffffcc;
+    color: var(--odbx_pale_yellow);
 }
 
 .viewer {
-    border: 0;
+    width: 100%;
 }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding: 0;
+  width: var(--odbx_min_width);
+}
+
+header {
+  background-color: #333;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+footer {
+  background-color: #333;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer_text {
+  background-color: #333;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 20px;
+}
+
+a {
+  color: #f2f2f2;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  text-decoration: underline wavy var(--odbx_main_color);
+  color: var(--odbx_main_color);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  text-decoration: underline wavy white;
+}
+
+canvas.ChemDoodleWebComponent {
+	border: 1px solid var(--odbx_grey);
+  border-radius: var(--odbx_border_radius);
+  box-shadow: var(--odbx_box_shadow);
+  margin-bottom: 20px;
+}
+
+.elements {
+    padding: 0
+}
+
+.H  {color: #FFFFFF}
+.He {color: #D9FFFF}
+.Li {color: #CC80FF}
+.Be {color: #C2FF00}
+.B  {color: #FFB5B5}
+.C  {color: #909090}
+.N  {color: #3050F8}
+.O  {color: #FF0D0D}
+.F  {color: #90E050}
+.Ne {color: #B3E3F5}
+.Na {color: #AB5CF2}
+.Mg {color: #8AFF00}
+.Al {color: #BFA6A6}
+.Si {color: #F0C8A0}
+.P  {color: #FF8000}
+.S  {color: #FFFF30}
+.Cl {color: #1FF01F}
+.Ar {color: #80D1E3}
+.K  {color: #8F40D4}
+.Ca {color: #3DFF00}
+.Sc {color: #E6E6E6}
+.Ti {color: #BFC2C7}
+.V  {color: #A6A6AB}
+.Cr {color: #8A99C7}
+.Mn {color: #9C7AC7}
+.Fe {color: #E06633}
+.Co {color: #F090A0}
+.Ni {color: #50D050}
+.Cu {color: #C88033}
+.Zn {color: #7D80B0}
+.Ga {color: #C28F8F}
+.Ge {color: #668F8F}
+.As {color: #BD80E3}
+.Se {color: #FFA100}
+.Br {color: #A62929}
+.Kr {color: #5CB8D1}
+.Rb {color: #702EB0}
+.Sr {color: #00FF00}
+.Y  {color: #94FFFF}
+.Zr {color: #94E0E0}
+.Nb {color: #73C2C9}
+.Mo {color: #54B5B5}
+.Tc {color: #3B9E9E}
+.Ru {color: #248F8F}
+.Rh {color: #0A7D8C}
+.Pd {color: #006985}
+.Ag {color: #C0C0C0}
+.Cd {color: #FFD98F}
+.In {color: #A67573}
+.Sn {color: #668080}
+.Sb {color: #9E63B5}
+.Te {color: #D47A00}
+.I  {color: #940094}
+.Xe {color: #429EB0}
+.Cs {color: #57178F}
+.Ba {color: #00C900}
+.La {color: #70D4FF}
+.Ce {color: #FFFFC7}
+.Pr {color: #D9FFC7}
+.Nd {color: #C7FFC7}
+.Pm {color: #A3FFC7}
+.Sm {color: #8FFFC7}
+.Eu {color: #61FFC7}
+.Gd {color: #45FFC7}
+.Tb {color: #30FFC7}
+.Dy {color: #1FFFC7}
+.Ho {color: #00FF9C}
+.Er {color: #00E675}
+.Tm {color: #00D452}
+.Yb {color: #00BF38}
+.Lu {color: #00AB24}
+.Hf {color: #4DC2FF}
+.Ta {color: #4DA6FF}
+.W  {color: #2194D6}
+.Re {color: #267DAB}
+.Os {color: #266696}
+.Ir {color: #175487}
+.Pt {color: #D0D0E0}
+.Au {color: #FFD123}
+.Hg {color: #B8B8D0}
+.Tl {color: #A6544D}
+.Pb {color: #575961}
+.Bi {color: #9E4FB5}
+.Po {color: #AB5C00}
+.At {color: #754F45}
+.Rn {color: #428296}
+.Fr {color: #420066}
+.Ra {color: #007D00}
+.Ac {color: #70ABFA}
+.Th {color: #00BAFF}
+.Pa {color: #00A1FF}
+.U  {color: #008FFF}
+.Np {color: #0080FF}
+.Pu {color: #006BFF}
+.Am {color: #545CF2}
+.Cm {color: #785CE3}
+.Bk {color: #8A4FE3}
+.Cf {color: #A136D4}
+.Es {color: #B31FD4}
+.Fm {color: #B31FBA}
+.Md {color: #B30DA6}
+.No {color: #BD0D87}
+.Lr {color: #C70066}
+.Rf {color: #CC0059}
+.Db {color: #D1004F}
+.Sg {color: #D90045}
+.Bh {color: #E00038}
+.Hs {color: #E6002E}
+.Mt {color: #EB0026}
+.Ds {color: #000000}
+.Rg {color: #000000}
+.Cn {color: #000000}
+.Nh {color: #000000}
+.Fl {color: #000000}
+.Mc {color: #000000}
+.Lv {color: #000000}
+.Ts {color: #000000}
+.Og {color: #000000}

@@ -1,0 +1,25 @@
+<table class="dft_table">
+    <tr>
+        <th> Code Version </th>
+    </tr>
+        <td>
+            {{ structure_info['data']['attributes'].get('_odbx_dft_code', {}).get('_odbx_code_name', 'CASTEP 20.1 +abdfx8') }}
+        </td>
+    </tr>
+    <tr>
+        <th> xc-functional </th>
+    </tr>
+    <tr>
+        <td>
+            {{ structure_info['data']['attributes'].get('_odbx_dft_parameters', {}).get('_odbx_xc_functional', 'PBE') }}
+        </td>
+    </tr>
+    <tr>
+        <th> Cutoff energy </th>
+    </tr>
+    <tr>
+        <td>
+            {{ "{:4.0f}".format(structure_info['data']['attributes'].get('_odbx_dft_parameters', {}).get('_odbx_cutoff_energy', 800.0)) }} eV
+        </td>
+    </tr>
+</table>

@@ -4,25 +4,18 @@
         <title>{{ odbx_title }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href=" {{ url_for('css', path='odbx.css') }}" type="text/css">
+        <meta name="keywords" content="odbx,optimade,materials,crystals,database">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo+Narrow">
-        <style>
-body,h1,h2,h3,h4,h5 {font-family: Archivo Narrow, sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-        </style>
-
+        <link rel="stylesheet" href=" {{ url_for('css', path='odbx.css') }}" type="text/css">
     </head>
-
+    <header>
+        {% include "header.html" %}
+    </header>
     <body>
         {% block content %}{% endblock %}
-
-    <div id="footer">
-        {% block footer %}
-        <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right"> &copy; Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
-        {% endblock %}
-    </div>
     </body>
+    <footer>
+        {% include "footer.html" %}
+    </footer>
+
 </html>

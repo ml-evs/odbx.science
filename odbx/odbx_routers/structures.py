@@ -1,5 +1,6 @@
 """ odbx version of optimade.server.routers.structures.py, including templates. """
 
+import re
 from typing import Union
 from pathlib import Path
 
@@ -59,7 +60,12 @@ def get_single_structure(
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)
 
-    print(dict(response)["data"])
+    exp = re.compile("[A-Z][^A-Z]")
+    split_formula = re.findall(
+        exp, response.data.attributes.chemical_formula_descriptive
+    )
+    print(response.data.attributes.chemical_formula_descriptive)
+    print(split_formula)
 
     context.update(
         {
@@ -68,6 +74,7 @@ def get_single_structure(
             "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
             "odbx_cif_string": optimade_to_basic_cif(response.data),
             "structure_info": dict(response),
+            "split_formula": split_formula,
         }
     )
 

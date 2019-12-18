@@ -1,0 +1,18 @@
+<table class="energy_table">
+    <tr>
+        <th> Formation energy </th>
+    </tr>
+    <tr>
+        <td>
+            {{ "{}".format(structure_info['data']['attributes']['_odbx_thermodynamics'].get('formation_energy')) }} eV/atom
+        </td>
+    </tr>
+    <tr>
+        <th> Enthalpy </th>
+    </tr>
+    <tr>
+        <td>
+            {{ "{:4.4f}".format(structure_info['data']['attributes']['_odbx_thermodynamics'].get('enthalpy')) }} eV/atom
+        </td>
+    </tr>
+</table>

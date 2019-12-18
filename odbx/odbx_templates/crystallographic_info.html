@@ -1,0 +1,22 @@
+<table class="crystal_table">
+    <tr>
+        <th> # of atoms</br></th>
+    </tr>
+    <tr>
+        <td> 8 </td>
+    </tr>
+    <tr>
+        <th>Space Group</th>
+    </tr>
+    <tr>
+        <td>
+            {{ structure_info['data']['attributes']['_odbx_space_group']['symbol'] }}
+        </td> 
+    </tr>
+    <tr>
+        <th> Cell Volume (Å³) </th>
+    </tr>
+    <tr>
+        <td>{{ "{:4.3f}".format(structure_info['data']['attributes'].get('_odbx_cell_volume', 0.0)).replace('0.000', 'xxx') }}</td>
+    </tr>
+</table>

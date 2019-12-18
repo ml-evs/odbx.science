@@ -23,11 +23,8 @@ def optimade_to_basic_cif(structure):
     cif_string += "_atom_site_fract_y\n"
     cif_string += "_atom_site_fract_z\n"
 
-    print(structure.attributes.species_at_sites)
     for atom, pos in zip(structure.attributes.species_at_sites, positions_frac):
         cif_string += f"{atom} {atom} {pos[0]} {pos[1]} {pos[2]}\n"
-
-    print(cif_string)
 
     return cif_string
 

@@ -1,12 +1,86 @@
 :root {
-    --odbx_main_color: blue;
+    --odbx_main_color: magenta;
+    --odbx_light_grey: #DCDCDC;
 }
 
 .odbx_id {
     font-family: monospace;
+    font-size: 0.8em;
+    vertical-align: middle;
+    padding: 0.1em 0.2em 0.2em 0.5em;
+}
+
+.header_text {
     color: var(--odbx_main_color);
-    background-color: #D3D3D3;
-    padding: 0.2em 0.5em 0.2em 0.5em;
+    background-color: var(--odbx_light_grey);
+    padding: 0.2em 0.2em 0.2em 0.5em;
     border: 1px solid var(--odbx_main_color);
     border-radius: 0.2em;
+}
+
+.formula_title {
+    color: black;
+    padding: 0.2em 0.2em 0.2em 0.5em;
+}
+
+th {
+    background-color: var(--odbx_light_grey);
+    align:center;
+    text-align:center;
+    font-weight: normal;
+    font-size: 1.1em;
+}
+
+td {
+    font-family: monospace;
+    align:center;
+    text-align:center;
+}
+
+.columns {
+    display: flex;
+    align-items: left;
+    width: auto;
+    margin: auto;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.structure_header {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 95%;
+    text-align: center;
+}
+
+table {
+    /*border: solid 1px black;*/
+    width: 150px;
+}
+
+.deck {
+    margin: 10px;
+}
+
+.crystal_table {
+    width: 200px;
+}
+
+.crystal_table th {
+    background-color: #ccffff;
+}
+
+.energy_table th {
+    background-color: #ccccff;
+}
+    
+.dft_table th {
+    background-color: #ffffcc;
+}
+
+.viewer {
+    border: 0;
 }

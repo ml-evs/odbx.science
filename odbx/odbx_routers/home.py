@@ -1,35 +1,18 @@
 """ odbx version of optimade.server.routers.structures.py, including templates. """
 
-from typing import Union
-
-from fastapi import APIRouter, Depends
-from starlette.requests import Request
-
-from optimade.models import (
-    ErrorResponse,
-    StructureResource,
-    StructureResponseMany,
-    StructureResponseOne,
-)
-from optimade.server.config import CONFIG
-from optimade.server.deps import EntryListingQueryParams, SingleEntryQueryParams
-from optimade.server.entry_collections import MongoCollection, client
-from optimade.server.mappers import StructureMapper
-
-from optimade.server.routers.utils import get_entries, get_single_entry
+from starlette.routing import Router, Route
 
 from ..odbx_templates import TEMPLATES
 
-router = APIRouter()
 
-
-@router.get("/")
-def homepage(request: Request):
+async def homepage(request):
     context = {
         "request": request,
         "odbx_title": "odbx",
         "odbx_blurb": "the open database of xtals",
-        "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
+        "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham, currently in public beta. Please contact <a href="mailto:web@odbx.science">web@odbx.science</a> with any issues.',
     }
+    return TEMPLATES.TemplateResponse("search.html", context)
 
-    return TEMPLATES.TemplateResponse("home.html", context)
+
+router = Router(routes=[Route("/", endpoint=homepage)])

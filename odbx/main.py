@@ -66,10 +66,11 @@ for prefix in valid_prefixes:
     app.include_router(structures.router, prefix=prefix)
 
 rich_prefix = ""  # odbx
-app.include_router(odbx_routers.home.router, prefix=rich_prefix)  # odbx
 app.include_router(odbx_routers.structures.router, prefix=rich_prefix)  # odbx
-js_dir = Path(__file__).parent.joinpath("js")
-css_dir = Path(__file__).parent.joinpath("css")
+app.include_router(odbx_routers.home.router, prefix=rich_prefix)  # odbx
+
+js_dir = Path(__file__).parent.joinpath("js")  # odbx
+css_dir = Path(__file__).parent.joinpath("css")  # odbx
 app.mount("/js", StaticFiles(directory=js_dir), name="js")  # odbx
 app.mount("/css", StaticFiles(directory=css_dir), name="css")  # odbx
 

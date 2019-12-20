@@ -1,23 +1,27 @@
 {% extends "layout.html" %}
-    
+
 {% block head %}
+{{ super() }}
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<link rel="stylesheet" href=" {{ url_for('css', path='./elements.css') }}" type="text/css">
+<script src=" {{ url_for('js', path='./lib/ChemDoodleWeb-8.0.0/install/ChemDoodleWeb.js') }}", type="text/javascript"> </script>
 {% endblock %}
 
+    
 {% block content %}
-
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<link rel="stylesheet" href=" {{ url_for('js', path='./lib/ChemDoodleWeb-8.0.0/install/ChemDoodleWeb.css') }}" type="text/css">
-<script src=" {{ url_for('js', path='./lib/ChemDoodleWeb-8.0.0/install/ChemDoodleWeb.js') }}", type="text/javascript"> </script>
 
 <div class="content">
     <div class="structure_header">
-        <h1><span class="header_text">
+            <div class="header_text">
+                <div class="odbx_id_font" style="padding-bottom: 10px">
+                    {{ entry_id }}
+                </div>
                 <span class="formula_title">
-            {% for elem in split_formula %}
-            {{ "<span class=\"elements {}\">{}</span>".format(elem, elem)|safe }}
-            {% endfor %}
-            </span>
-        </span></h1>
+                    {% for elem in split_formula %}
+                    {{ "<span class=\"elements {}\">{}</span>".format(elem, elem)|safe }}
+                    {% endfor %}
+                </span>
+            </div>
     </div>
 
     <div class="columns"> 

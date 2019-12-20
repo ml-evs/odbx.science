@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% block head %}
         <title>{{ odbx_title }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="odbx,optimade,materials,crystals,database">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo+Narrow">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href=" {{ url_for('css', path='odbx.css') }}" type="text/css">
+        {% endblock %}
+        
     </head>
     <header>
         {% include "header.html" %}

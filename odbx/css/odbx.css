@@ -204,7 +204,8 @@ td {
     width: 80%;
     padding: 20px;
     color: var(--odbx_main_color);
-    background-color: white;
+    background-color: var(--odbx_white);
+    border-radius: var(--odbx_border_radius);
     font-size: 32px;
 }
 
@@ -365,6 +366,26 @@ footer a {
 
 .odbx_title a:hover {
   text-decoration: underline wavy var(--odbx_main_color);
+  color: var(--odbx_main_color);
+}
+
+.example_queries {
+    padding: 30px; 
+    font-size:0.8em; 
+    margin-left:auto; 
+    margin-right:auto;
+    width:85%;
+}
+
+.example_queries a {
+  text-decoration: none;
+  color: var(--odbx_pale_blue);
+  padding: 10px;
+}
+
+/* Change the color of links on hover */
+.example_queries a:hover {
+  background-color: var(--odbx_white);
   color: var(--odbx_main_color);
 }
 

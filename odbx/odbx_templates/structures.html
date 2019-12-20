@@ -10,8 +10,13 @@
 {% block content %}
 
 <div class="content">
-    <div class="structures_header" style="font-size: 18px">
-        {{ "Displaying {} results of {} for the query: <span class=\"query_font\" style=\"font-family: monospace\">{}</span>".format(n_results, data_available, query) | safe }}
+    <div class="structures_header" style="font-size: 18px;">
+        {{ "Displaying {} results of {} for the query:".format(n_results, data_available) }}
+        <div style="margin: 10px; margin-left: auto; margin-right:auto; width: 100%;">
+            <span class="query_font" style="text-align: center; font-size: 0.7em;">
+                {{ query }}
+            </span>
+        </div>
     </div>
     <div class="columns"> 
         <table class="structures_table">

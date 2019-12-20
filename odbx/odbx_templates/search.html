@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+    
+{% block content %}
+
+<div class="content">
+    <div class="body_text">
+        {{ odbx_about | safe }}
+    </div>
+    <div class="search_box">
+        <form action="/structures" method="get">
+            <input type="text" name="filter" value="Search..."
+             onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'">
+        </form>
+    </div>
+    <div class="body_text">
+        Example queries:</br>
+        <div style="padding: 30px; font-size:0.8em; margin-left:auto; margin-right:auto; width:85%;">
+            <a href='./structures?filter=elements HAS "Na"' style="padding:10px;"><span class="query_font">elements HAS "Na"</span></a>
+            <a href='./structures?filter=chemical_formula_descriptive="ClNa"' style="padidng:10px;"><span class="query_font">chemical_formula_descriptive="ClNa"</span></a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

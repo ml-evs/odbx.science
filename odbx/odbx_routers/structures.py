@@ -112,7 +112,7 @@ def get_single_structure(
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)
 
-    exp = re.compile("[A-Z][^A-Z]")
+    exp = re.compile("[A-Z]*[A-Z]*")
     split_formula = re.findall(
         exp, response.data.attributes.chemical_formula_descriptive
     )

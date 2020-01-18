@@ -23,6 +23,8 @@ import optimade.server.exception_handlers as exc_handlers
 
 from . import odbx_routers  # odbx
 
+config_version = "0.10.0"
+
 app = FastAPI(
     title="OPTiMaDe API",
     description=(
@@ -30,7 +32,7 @@ app = FastAPI(
         "(http://http://www.optimade.org/) aims to make materials databases interoperational "
         "by developing a common REST API."
     ),
-    version=CONFIG.version,
+    version=config_version,
     docs_url="/optimade/extensions/docs",
     redoc_url="/optimade/extensions/redoc",
     openapi_url="/optimade/extensions/openapi.json",
@@ -51,7 +53,7 @@ app.add_exception_handler(Exception, exc_handlers.general_exception_handler)
 #   /optimade/vMajor.Minor
 #   /optimade/vMajor.Minor.Patch
 valid_prefixes = ["/optimade"]
-version = [int(_) for _ in CONFIG.version.split(".")]
+version = [int(_) for _ in config_version.split(".")]
 while version:
     if version[0] or len(version) >= 2:
         valid_prefixes.append(

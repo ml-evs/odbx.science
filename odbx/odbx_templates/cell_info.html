@@ -20,7 +20,7 @@
             {% for atom in structure_info['data']['attributes']['species_at_sites'] %}
                 {{ "{:3}".format(atom)}}
                 {% for elem in structure_info['data']['attributes']['cartesian_site_positions'][loop.index-1] %}
-                    {{ "{:+4.3f}".format(elem).replace('+', '&nbsp;')|safe}}
+                    {{ "{:+9.3f}".format(elem).replace('+', '&nbsp;')|safe}}
                 {% endfor %}
                 </br>
             {% endfor %}

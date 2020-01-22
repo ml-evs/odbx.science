@@ -13,7 +13,7 @@ the following way:
 
 ## Hardware 
 
-As of 02/12/19, the server runs as an HPCS OpenStack VM (quadcore Haswell, 8 GB RAM), with three virutal disks attached:
+As of 02/12/19, the server runs as an RCS OpenStack VM (quadcore Haswell, 8 GB RAM), with three virutal disks attached:
 
 - `/dev/vda`, 80 GB, mounted at `/` contains OS and apps
 - `/dev/vdb`, 1 TB, mounted at `/data/sql`, contains SQL database for OQMD

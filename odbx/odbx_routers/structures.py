@@ -105,9 +105,6 @@ def get_single_structure(
     )
 
     context = {"request": request, "entry_id": entry_id}
-    print("RESPONSE")
-    print(response.meta.data_available)
-    print(response.meta.data_returned)
 
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)

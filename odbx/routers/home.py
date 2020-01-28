@@ -2,7 +2,7 @@
 
 from starlette.routing import Router, Route
 
-from ..odbx_templates import TEMPLATES
+from ..templates import TEMPLATES
 
 
 async def homepage(request):

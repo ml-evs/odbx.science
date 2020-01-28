@@ -19,8 +19,8 @@ from optimade.server.routers.utils import get_single_entry, get_entries
 
 from matador.utils.chem_utils import get_stoich_from_formula
 
-from ..odbx_mappers import StructureMapper
-from ..odbx_templates import TEMPLATES
+from ..mappers import StructureMapper
+from ..templates import TEMPLATES
 from ..utils import optimade_to_basic_cif
 
 router = APIRouter()

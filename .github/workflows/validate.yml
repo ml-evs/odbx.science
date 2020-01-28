@@ -1,4 +1,4 @@
-name: Scheduled validator
+name: Remote validator
 
 on:
   push:

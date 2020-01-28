@@ -1,6 +1,5 @@
 """ odbx version of optimade.server.routers.structures.py, including templates. """
 
-import re
 from typing import Union
 from pathlib import Path
 
@@ -13,12 +12,13 @@ from optimade.models import (
     StructureResponseOne,
     StructureResponseMany,
 )
-
 from optimade.server.config import CONFIG
 from optimade.server.deps import SingleEntryQueryParams, EntryListingQueryParams
 from optimade.server.entry_collections import MongoCollection, client
-
 from optimade.server.routers.utils import get_single_entry, get_entries
+
+from matador.utils.chem_utils import get_stoich_from_formula
+
 from ..odbx_mappers import StructureMapper
 from ..odbx_templates import TEMPLATES
 from ..utils import optimade_to_basic_cif
@@ -109,10 +109,11 @@ def get_single_structure(
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)
 
-    exp = re.compile("[A-Z]*[A-Z]*")
-    split_formula = re.findall(
-        exp, response.data.attributes.chemical_formula_descriptive
-    )
+    stoichiometry = get_stoich_from_formula(response.data.attributes.chemical_formula_descriptive)
+    for ind, (elem, num) in enumerate(stoichiometry):
+        if num - int(num) > 1e-5:
+            raise RuntimeError('Unable to cast formula to correct format')
+        stoichiometry[ind][1] = int(num)
 
     context.update(
         {
@@ -121,7 +122,7 @@ def get_single_structure(
             "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
             "odbx_cif_string": optimade_to_basic_cif(response.data),
             "structure_info": dict(response),
-            "split_formula": split_formula,
+            "stoichiometry": stoichiometry,
         }
     )
 

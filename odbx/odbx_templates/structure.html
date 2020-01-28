@@ -17,8 +17,8 @@
                     {{ entry_id }}
                 </div>
                 <span class="formula_title">
-                    {% for elem in split_formula %}
-                    {{ "<span class=\"elements {}\">{}</span>".format(elem, elem)|safe }}
+                    {% for (elem, num) in stoichiometry %}
+                    {{ "<span class=\"elements {elem}\">{elem}{num}</span>".format(elem=elem, num=num if num != 1)|safe }}
                     {% endfor %}
                 </span>
             </div>

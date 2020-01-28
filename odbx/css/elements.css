@@ -2,6 +2,11 @@
     padding: 0
 }
 
+.number {
+    color: white;
+    padding: 0
+}
+
 .H  {color: #FFFFFF}
 .He {color: #D9FFFF}
 .Li {color: #CC80FF}

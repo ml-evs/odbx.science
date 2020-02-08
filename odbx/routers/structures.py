@@ -109,10 +109,12 @@ def get_single_structure(
     if response.meta.data_returned < 1:
         return TEMPLATES.TemplateResponse("structure_not_found.html", context)
 
-    stoichiometry = get_stoich_from_formula(response.data.attributes.chemical_formula_descriptive)
+    stoichiometry = get_stoich_from_formula(
+        response.data.attributes.chemical_formula_descriptive
+    )
     for ind, (elem, num) in enumerate(stoichiometry):
         if num - int(num) > 1e-5:
-            raise RuntimeError('Unable to cast formula to correct format')
+            raise RuntimeError("Unable to cast formula to correct format")
         stoichiometry[ind][1] = int(num)
 
     context.update(

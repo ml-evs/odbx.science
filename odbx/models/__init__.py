@@ -23,6 +23,7 @@ __all__ = [
 if __name__ == "__main__":
     import pymongo as pm
     from matador.scrapers import castep2dict
+
     cli = pm.MongoClient()
     db = cli.crystals
 

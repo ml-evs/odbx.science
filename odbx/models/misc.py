@@ -2,9 +2,7 @@ from typing import Optional, Dict
 from pydantic import Schema, EmailStr
 from optimade.models.references import Person
 
-__all__ = [
-    "MatadorPerson"
-]
+__all__ = ["MatadorPerson"]
 
 
 class MatadorPerson(Person):

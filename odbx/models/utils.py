@@ -14,6 +14,7 @@ from matador.utils.db_utils import WORDS, NOUNS
 
 import tqdm
 
+
 def check_shape(v, shape, field):
     """ Check that the array `v` has the correct `shape` for the given `field`. """
     vshape = np.shape(np.asarray(v))

@@ -1,10 +1,7 @@
 from pydantic import BaseModel, Field, List, Optional, conint, validator
 from optimade.models import StructureResourceAttributes
 
-__all__ = [
-    'MatadorSpaceGroup',
-    'MatadorStructureResourceAttributes'
-]
+__all__ = ["MatadorSpaceGroup", "MatadorStructureResourceAttributes"]
 
 
 class MatadorSpaceGroup(BaseModel):
@@ -16,13 +13,11 @@ class MatadorSpaceGroup(BaseModel):
     )
 
     spglib_tolerance: float = Field(
-        ...,
-        description="""The symmetry tolerance used to compute the space group."""
+        ..., description="""The symmetry tolerance used to compute the space group."""
     )
 
     number: Optional[conint(gt=0, lt=231)] = Field(
-        ...,
-        description="""The space group number from 1-230."""
+        ..., description="""The space group number from 1-230."""
     )
 
 
@@ -35,8 +30,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     fractional_site_positions: List[List[float]] = Field(
-        ...,
-        description="""Fractional positions."""
+        ..., description="""Fractional positions."""
     )
 
     cell_volume: float = Field(
@@ -50,8 +44,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     thermodynamics: MatadorThermodynamics = Field(
-        ...,
-        description="""Container for the energies computed for the structure."""
+        ..., description="""Container for the energies computed for the structure."""
     )
 
     space_group: MatadorSpaceGroup = Field(
@@ -60,23 +53,19 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     submitter: MatadorPerson = Field(
-        ...,
-        description="""The person nominally responsible for the calculation. """
+        ..., description="""The person nominally responsible for the calculation. """
     )
 
     stress: float = Field(
-        ...,
-        description="""The computed stress on the structure (Tr(p)/3)."""
+        ..., description="""The computed stress on the structure (Tr(p)/3)."""
     )
 
     stress_tensor: Optional[List[List[float]]] = Field(
-        ...,
-        description="""The computed stress tensor on the structure."""
+        ..., description="""The computed stress tensor on the structure."""
     )
 
     forces: Optional[List[List[float]]] = Field(
-        ...,
-        description="""The forces on each atom in the structure, in eV/A. """
+        ..., description="""The forces on each atom in the structure, in eV/A. """
     )
 
     max_force_on_atom: Optional[float] = Field(
@@ -90,8 +79,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     date: Optional[datetime.datetime] = Field(
-        ...,
-        description="""Date on which calculation was performed."""
+        ..., description="""Date on which calculation was performed."""
     )
 
     @validator("stress_tensor", whole=True)

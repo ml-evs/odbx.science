@@ -71,8 +71,7 @@ class MatadorHamiltonian(BaseModel):
     """ Container for any parameters that alter the Hamiltonian under which the structure was relaxed, or convergence parameters that alter the final results. """
 
     cut_off_energy: float = Field(
-        ...,
-        description="""The cutoff energy used in the calcution, in eV."""
+        ..., description="""The cutoff energy used in the calcution, in eV."""
     )
 
     xc_functional: MatadorSupportedXCFunctionals = Field(
@@ -91,8 +90,7 @@ class MatadorHamiltonian(BaseModel):
     )
 
     external_pressure: List[List[float]] = Field(
-        ...,
-        description="""The external pressure tensor applied during relaxation."""
+        ..., description="""The external pressure tensor applied during relaxation."""
     )
 
     kpoint_spacing: float = Field(
@@ -101,13 +99,11 @@ class MatadorHamiltonian(BaseModel):
     )
 
     geom_method: Optional[str] = Field(
-        ...,
-        description="""Free text name of the method used to relax the structure."""
+        ..., description="""Free text name of the method used to relax the structure."""
     )
 
     geom_force_tol: Optional[float] = Field(
-        ...,
-        description="""The target force attempted by the relaxer."""
+        ..., description="""The target force attempted by the relaxer."""
     )
 
     @validator("external_pressure", whole=True)
@@ -118,8 +114,7 @@ class MatadorHamiltonian(BaseModel):
 class MatadorCalculator(BaseModel):
 
     name: str = Field(
-        ...,
-        description="The name of the software package used for the calculation"
+        ..., description="The name of the software package used for the calculation"
     )
 
     version_major: int = Field(
@@ -128,18 +123,15 @@ class MatadorCalculator(BaseModel):
     )
 
     version_minor: float = Field(
-        ...,
-        description="The minor version number as a float."
+        ..., description="The minor version number as a float."
     )
 
     commit_hash: Optional[str] = Field(
-        ...,
-        description="The commit hash of the version, if available."
+        ..., description="The commit hash of the version, if available."
     )
 
     architecture: Optional[str] = Field(
-        ...,
-        description="Description of the compiler and architecture."
+        ..., description="Description of the compiler and architecture."
     )
 
 
@@ -156,13 +148,11 @@ class MatadorThermodynamics(BaseModel):
     )
 
     formation_energy: Optional[float] = Field(
-        ...,
-        description="""The computed formation energy per atom in eV."""
+        ..., description="""The computed formation energy per atom in eV."""
     )
 
     hull_distance: Optional[float] = Field(
-        ...,
-        description="""The computed distance from the convex hull in eV."""
+        ..., description="""The computed distance from the convex hull in eV."""
     )
 
     relative_enthalpy: Optional[float] = Field(

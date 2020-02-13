@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  nginx: 
+    restart: always
+    build:
+      context: .
+      dockerfile: .docker/nginx_dockerfile
+      args:
+        STATIC_DIR: 'odbx/static/'
+    ports:
+      - '8000:80'
+    depends_on:
+      - odbx
+    networks:
+      - nginx_network
+
+  odbx:
+    restart: always
+    build:
+      context: .
+      dockerfile: .docker/odbx_dockerfile
+      args:
+        PORT: 5000
+    ports:
+      - "5000:5000"
+    environment:
+      MAIN: main
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge

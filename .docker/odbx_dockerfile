@@ -1,0 +1,14 @@
+FROM python:3.7
+
+WORKDIR /app
+
+# copy repo contents and install deps
+COPY server.cfg optimade_config.ini requirements.txt README.md ./
+COPY odbx ./odbx
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+COPY scripts/start_server.sh ./run.sh
+
+CMD ["/app/run.sh"]

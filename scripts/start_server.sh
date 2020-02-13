@@ -1,3 +1,2 @@
 #!/bin/bash
-source activate optimade
-uvicorn optimade.server.main:app --port 8080 --host 0.0.0.0 --workers 2 --access-log
+uvicorn odbx.main:app --port 5000 --host 0.0.0.0 --workers 2 --access-log

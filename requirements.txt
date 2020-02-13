@@ -1,4 +1,5 @@
+-e git://github.com/ml-evs/matador.git#egg=matador
+-e git://github.com/Materials-Consortia/optimade-python-tools.git#egg=optimade[server]
+gunicorn>=20.0.4
 aiofiles>=0.4.0
-jinja2>=2.10
-matador
-optimade>=0.3
+Jinja2>=2.11.1

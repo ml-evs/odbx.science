@@ -13,7 +13,7 @@ from optimade.models import (
     StructureResponseMany,
 )
 from optimade.server.config import CONFIG
-from optimade.server.deps import SingleEntryQueryParams, EntryListingQueryParams
+from optimade.server.query_params import SingleEntryQueryParams, EntryListingQueryParams
 from optimade.server.entry_collections import MongoCollection, client
 from optimade.server.routers.utils import get_single_entry, get_entries
 

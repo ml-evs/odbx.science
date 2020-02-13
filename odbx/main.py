@@ -16,8 +16,9 @@ from starlette.staticfiles import StaticFiles  # odbx
 
 from optimade.server.entry_collections import MongoCollection
 from optimade.server.config import CONFIG
-from optimade.server.routers import info, links, references, structures
-from optimade.server.routers.utils import get_providers
+from optimade.server.routers import info, links, references, structures, landing
+from optimade.server.middleware import RedirectSlashedURLs
+from optimade.server.routers.utils import get_providers, BASE_URL_PREFIXES
 
 import optimade.server.exception_handlers as exc_handlers
 
@@ -38,6 +39,7 @@ app = FastAPI(
     openapi_url="/optimade/extensions/openapi.json",
 )
 
+app.add_middleware(RedirectSlashedURLs)
 
 app.add_exception_handler(StarletteHTTPException, exc_handlers.http_exception_handler)
 app.add_exception_handler(
@@ -46,26 +48,14 @@ app.add_exception_handler(
 app.add_exception_handler(ValidationError, exc_handlers.validation_exception_handler)
 app.add_exception_handler(Exception, exc_handlers.general_exception_handler)
 
+app.include_router(info.router, prefix=BASE_URL_PREFIXES["major"])
+app.include_router(links.router, prefix=BASE_URL_PREFIXES["major"])
+app.include_router(references.router, prefix=BASE_URL_PREFIXES["major"])
+app.include_router(structures.router, prefix=BASE_URL_PREFIXES["major"])
 
-# Create the following prefixes:
-#   /optimade
-#   /optimade/vMajor (but only if Major >= 1)
-#   /optimade/vMajor.Minor
-#   /optimade/vMajor.Minor.Patch
-valid_prefixes = ["/optimade"]
-version = [int(_) for _ in config_version.split(".")]
-while version:
-    if version[0] or len(version) >= 2:
-        valid_prefixes.append(
-            "/optimade/v{}".format(".".join([str(_) for _ in version]))
-        )
-    version.pop(-1)
-
-for prefix in valid_prefixes:
-    app.include_router(info.router, prefix=prefix)
-    app.include_router(links.router, prefix=prefix)
-    app.include_router(references.router, prefix=prefix)
-    app.include_router(structures.router, prefix=prefix)
+# add landing page
+app.include_router(landing.router, prefix="/optimade")
+app.include_router(landing.router, prefix=BASE_URL_PREFIXES["major"])
 
 rich_prefix = ""  # odbx
 app.include_router(routers.structures.router, prefix=rich_prefix)  # odbx

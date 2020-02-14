@@ -1,7 +1,7 @@
 from .utils import MatadorOptimadeTransformer
-from .dft import *
-from .misc import *
-from .structure import *
+from .dft import *  # noqa
+from .misc import *  # noqa
+from .structure import *  # noqa
 
 
 """ This module includes all the odbx-specific extensions
@@ -9,7 +9,7 @@ of the OPTiMaDe specification.
 
 """
 
-__all__ = [
+__all__ = [  # noqa
     "MatadorPseudopotentialType",
     "MatadorSpinTreatment",
     "MatadorSupportedXCFunctionals",

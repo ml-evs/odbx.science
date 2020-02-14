@@ -12,6 +12,8 @@ __all__ = [
     "MatadorThermodynamics",
 ]
 
+from .utils import check_shape
+
 
 class MatadorSpinTreatment(str, Enum):
     none = "none"

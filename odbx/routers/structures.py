@@ -14,7 +14,6 @@ from optimade.models import (
 )
 from optimade.server.config import CONFIG
 from optimade.server.query_params import SingleEntryQueryParams, EntryListingQueryParams
-from optimade.server.entry_collections import MongoCollection
 from optimade.server.routers.utils import get_single_entry, get_entries
 
 from matador.utils.chem_utils import get_stoich_from_formula

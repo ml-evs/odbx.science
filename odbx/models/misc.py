@@ -1,4 +1,4 @@
-from typing import Optional, Dict
+from typing import Optional
 from pydantic import Schema, EmailStr
 from optimade.models.references import Person
 

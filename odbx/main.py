@@ -4,7 +4,6 @@ implementation.
 
 """
 
-import json
 from pathlib import Path
 
 from lark.exceptions import VisitError

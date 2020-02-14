@@ -1,16 +1,26 @@
 import random
-import pymongo as pm
+import datetime
 import bson
+import pymongo as pm
 import numpy as np
-from optimade.models.structures import (
-    StructureResource,
-    StructureResourceAttributes,
-    Species,
-)
+
+from pydantic import List, Union
+from optimade.models.structures import Species
+
 from matador.utils.chem_utils import get_formula_from_stoich, get_concentration
 from matador.utils.cell_utils import cart2volume
 from matador.crystal import Crystal
 from matador.utils.db_utils import WORDS, NOUNS
+
+from .dft import (
+    MatadorHamiltonian,
+    MatadorPseudopotential,
+    MatadorCalculator,
+    MatadorThermodynamics,
+)
+
+from .structures import MatadorSpaceGroup, MatadorStructureResourceAttributes
+from .misc import MatadorPerson
 
 import tqdm
 
@@ -49,7 +59,7 @@ class MatadorOptimadeTransformer:
         for ind, doc in tqdm.tqdm(enumerate(documents)):
             crys_doc = Crystal(doc)
             out_cursor.append(self.create_optimade_structure(crys_doc, ind))
-        results = out_collection.insert_many(out_cursor)
+        _ = out_collection.insert_many(out_cursor)
         # out_collection.rename("structures")
         # print(results)
 
@@ -113,6 +123,13 @@ class MatadorOptimadeTransformer:
             arch = doc._data["_compiler_architecture"]
         else:
             arch = "unknown"
+
+        return MatadorCalculator(
+            version_major=major,
+            version_minor=minor,
+            commit_hash=commit,
+            architecture=arch,
+        )
 
     @classmethod
     def construct_spacegroup(self, doc: Crystal, tolerance=1e-3) -> MatadorSpaceGroup:
@@ -196,7 +213,7 @@ class MatadorOptimadeTransformer:
 
         return MatadorStructureResourceAttributes(**structure_attributes)
 
-    def create_optimade_structure(self, doc: Crystal, int_id: int) -> Dict:
+    def create_optimade_structure(self, doc: Crystal, int_id: int) -> dict:
 
         structure = self.construct_structure_attributes(doc).dict()
         structure["id"] = f"odbx/{int_id}"

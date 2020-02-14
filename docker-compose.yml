@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 services:
 
@@ -10,7 +10,7 @@ services:
       args:
         STATIC_DIR: 'odbx/static/'
     ports:
-      - '8000:80'
+      - '8080:80'
     depends_on:
       - odbx
     volumes:
@@ -35,6 +35,7 @@ services:
       dockerfile: .docker/mongo_dockerfile
     volumes:
         - sockets:/tmp
+        - /data/mongo/db:/data/db
 
 volumes:
     sockets:

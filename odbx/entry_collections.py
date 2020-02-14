@@ -22,5 +22,5 @@ class OdbxMongoCollection(MongoCollection):
         ):
             raise RuntimeError(
                 "Backend currently unavailable, please try again in a few minutes.\n"
-                f"Report further issues to {CONFIG.implementation['maintainer']['email']}."
+                f"Report further issues to web@odbx.science."
             )

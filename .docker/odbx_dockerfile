@@ -4,9 +4,9 @@ WORKDIR /app
 
 # copy repo contents and install deps
 COPY requirements.txt ./
-COPY odbx ./odbx
 RUN pip install -r requirements.txt
 
+COPY odbx ./odbx
 # copy configs and startup scripts
 COPY server.cfg optimade_config.ini README.md ./
 COPY scripts/start_production.sh ./run.sh

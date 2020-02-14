@@ -13,23 +13,28 @@ services:
       - '8000:80'
     depends_on:
       - odbx
-    networks:
-      - nginx_network
+    volumes:
+      - sockets:/tmp
 
   odbx:
     restart: always
     build:
       context: .
       dockerfile: .docker/odbx_dockerfile
-      args:
-        PORT: 5000
-    ports:
-      - "5000:5000"
     environment:
       MAIN: main
-    networks:
-      - nginx_network
+    depends_on:
+      - mongo
+    volumes:
+      - sockets:/tmp
 
-networks:
-  nginx_network:
-    driver: bridge
+  mongo:
+    restart: always
+    build:
+      context: .
+      dockerfile: .docker/mongo_dockerfile
+    volumes:
+        - sockets:/tmp
+
+volumes:
+    sockets:

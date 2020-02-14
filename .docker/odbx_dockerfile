@@ -3,12 +3,13 @@ FROM python:3.7
 WORKDIR /app
 
 # copy repo contents and install deps
-COPY server.cfg optimade_config.ini requirements.txt README.md ./
+COPY requirements.txt ./
 COPY odbx ./odbx
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+# copy configs and startup scripts
+COPY server.cfg optimade_config.ini README.md ./
+COPY scripts/start_production.sh ./run.sh
 
-COPY scripts/start_server.sh ./run.sh
-
+# run web server
 CMD ["/app/run.sh"]

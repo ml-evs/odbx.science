@@ -14,7 +14,7 @@ from optimade.models import (
 )
 from optimade.server.config import CONFIG
 from optimade.server.query_params import SingleEntryQueryParams, EntryListingQueryParams
-from optimade.server.entry_collections import MongoCollection, client
+from optimade.server.entry_collections import MongoCollection
 from optimade.server.routers.utils import get_single_entry, get_entries
 
 from matador.utils.chem_utils import get_stoich_from_formula
@@ -22,6 +22,7 @@ from matador.utils.chem_utils import get_stoich_from_formula
 from ..mappers import StructureMapper
 from ..templates import TEMPLATES
 from ..utils import optimade_to_basic_cif
+from ..entry_collections import CLIENT, OdbxMongoCollection
 
 router = APIRouter()
 
@@ -31,8 +32,8 @@ with open(Path(__file__).resolve().parent.joinpath("test.cif"), "r") as f:
         [line for line in f.readlines() if not line.strip().startswith("#")]
     ).replace("'", "\\'")
 
-structures_coll = MongoCollection(
-    collection=client[CONFIG.mongo_database][CONFIG.structures_collection],
+structures_coll = OdbxMongoCollection(
+    collection=CLIENT[CONFIG.mongo_database][CONFIG.structures_collection],
     resource_cls=StructureResource,
     resource_mapper=StructureMapper,
 )

@@ -1,5 +1,5 @@
 from pathlib import Path
-from setuptools import setup, find_packages
+from setuptools import setup
 
 module_dir = Path(__file__).resolve().parent
 
@@ -11,6 +11,6 @@ setup(
     author="Matthew Evans",
     author_email="web@odbx.science",
     include_package_data=True,
-    packages=['odbx'],
+    packages=["odbx"],
     python_requires=">=3.6",
 )

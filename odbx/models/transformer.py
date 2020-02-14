@@ -1,12 +1,11 @@
 import random
 import datetime
 import bson
-import pymongo as pm
 import numpy as np
 
 from typing import List, Union
 from optimade.models.structures import Species
-from optimade.models import ReferenceResource, Relationships
+from optimade.models import ReferenceResource
 
 from optimade.server.routers import ENTRY_COLLECTIONS
 
@@ -30,9 +29,7 @@ import tqdm
 
 class MatadorOptimadeTransformer:
     def __init__(
-        self,
-        structures: list = None,
-        references: list = None,
+        self, structures: list = None, references: list = None,
     ):
 
         self.wlines = WORDS
@@ -43,19 +40,25 @@ class MatadorOptimadeTransformer:
 
         documents = structures
 
+        out_cursor = []
+
         if references is not None:
             for ref in references:
                 ref["last_modified"] = datetime.datetime.now()
-            references = [ReferenceResource(id=ref.pop("id"), attributes=ref).dict() for ref in references]
-
+            references = [
+                ReferenceResource(id=ref.pop("id"), attributes=ref).dict()
+                for ref in references
+            ]
 
         for ind, doc in tqdm.tqdm(enumerate(documents)):
             crys_doc = Crystal(doc)
             structure = self.create_optimade_structure(crys_doc, ind)
             structure["relationships"] = {}
             structure["relationships"]["references"] = {}
-            structure["relationships"]["references"]["data"] = [{"id": ref["id"], "type": "references"} for ref in references]
-            out_cursor.insert_many(out_cursor)
+            structure["relationships"]["references"]["data"] = [
+                {"id": ref["id"], "type": "references"} for ref in references
+            ]
+            out_cursor.append(structure)
 
         _ = ENTRY_COLLECTIONS["references"].collection.insert_many(references)
         _ = ENTRY_COLLECTIONS["structures"].collection.insert_many(out_cursor)
@@ -84,7 +87,8 @@ class MatadorOptimadeTransformer:
         return sorted(
             [
                 MatadorPseudopotential(
-                    identifier=doc._data["species_pot"][key], species=key,
+                    identifier=doc._data["species_pot"][key],
+                    species=key,
                     pp_type="usp",
                 )
                 for key in doc._data["species_pot"]
@@ -195,8 +199,10 @@ class MatadorOptimadeTransformer:
         else:
             structure_attributes["immutable_id"] = str(bson.objectid.ObjectId())
         if "date" in doc._data:
-            date = [int(val) for val in doc._data["date"].split('-')]
-            structure_attributes["date"] = datetime.date(year=date[-1], month=date[1], day=date[0])
+            date = [int(val) for val in doc._data["date"].split("-")]
+            structure_attributes["date"] = datetime.date(
+                year=date[-1], month=date[1], day=date[0]
+            )
 
         # from matador extensions
         structure_attributes["parameters"] = self.construct_dft_hamiltonian(doc)
@@ -211,7 +217,6 @@ class MatadorOptimadeTransformer:
         structure_attributes["max_force_on_atom"] = doc._data.get("max_force_on_atom")
 
         return MatadorStructureResourceAttributes(**structure_attributes)
-
 
     def create_optimade_structure(self, doc: Crystal, int_id: int) -> dict:
 

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def check_shape(v, shape, field):
     """ Check that the array `v` has the correct `shape` for the given `field`. """
     vshape = np.shape(np.asarray(v))

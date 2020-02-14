@@ -1,7 +1,7 @@
 # odbx.science
 
 [![OPTiMaDe](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Materials-Consortia/optimade-python-tools/master/.ci/optimade-version.json&logo=json)](https://github.com/Materials-Consortia/OPTiMaDe/) 
-[![OPTiMaDe-compliant](https://img.shields.io/github/workflow/status/ml-evs/odbx.science/Scheduled%20validator?logo=github)](https://github.com/ml-evs/odbx.science/actions?query=branch%3Amaster+)
+[![Build Status](https://img.shields.io/github/workflow/status/ml-evs/odbx.science/Remote%20validator?logo=github)](https://github.com/ml-evs/odbx.science/actions?query=branch%3Amaster+)
 
 This repo contains some notes about the server running at odbx.science. 
 

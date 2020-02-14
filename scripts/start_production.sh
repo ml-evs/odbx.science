@@ -1,10 +1,9 @@
 #!/bin/bash
 mkdir -p logs
+mkdir -p /tmp
 gunicorn \
-    -w 4 \
+    -w 1 \
     -k uvicorn.workers.UvicornWorker \
-    -b 0.0.0.0:5000 \
-    --forwarded-allow-ips="*" \
     --error-logfile logs/error.log \
     --access-logfile logs/access.log \
-    odbx.main:app;
+    -b unix:/tmp/gunicorn.sock odbx.main:app;

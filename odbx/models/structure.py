@@ -1,9 +1,10 @@
 import datetime
-from pydantic import BaseModel, Field, List, Optional, conint, validator
+from pydantic import BaseModel, Field, conint, validator
+from typing import List, Optional
 from optimade.models import StructureResourceAttributes
-from .dft import MatadorThermodynamics, MatadorHamiltonian
-from .misc import MatadorPerson
-from .util import check_shape
+from odbx.models.dft import MatadorThermodynamics, MatadorHamiltonian
+from odbx.models.misc import MatadorPerson
+from odbx.models.utils import check_shape
 
 __all__ = ["MatadorSpaceGroup", "MatadorStructureResourceAttributes"]
 

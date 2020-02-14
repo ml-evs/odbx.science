@@ -12,7 +12,7 @@ __all__ = [
     "MatadorThermodynamics",
 ]
 
-from .utils import check_shape
+from odbx.models.utils import check_shape
 
 
 class MatadorSpinTreatment(str, Enum):

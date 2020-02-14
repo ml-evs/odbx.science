@@ -27,6 +27,7 @@ services:
       - mongo
     volumes:
       - sockets:/tmp
+      - /data/structure_repository/:/data/structure_repository
 
   mongo:
     restart: always

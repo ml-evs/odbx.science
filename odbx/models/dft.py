@@ -49,22 +49,22 @@ class MatadorPseudopotential(BaseModel):
     )
 
     pp_type: Optional[MatadorPseudopotentialType] = Field(
-        ...,
+        None, 
         description="""The overall type of the pseudopotential, must be one of ["ultrasoft", "norm-conserving", "paw"].""",
     )
 
     raw: Optional[str] = Field(
-        ...,
+        None, 
         description="""The contents of the pseudopotential file used in the calculation.""",
     )
 
     scheme_desc: Optional[str] = Field(
-        ...,
+        None, 
         description="""Descrition of psedopotential generation scheme e.g. 'vanderbilt-usp' or 'paw'""",
     )
 
     library: Optional[str] = Field(
-        ...,
+        None,
         description="""Optional library name for source of pseudopotential, e.g. 'C18' or 'SSSP-acc'.""",
     )
 
@@ -101,11 +101,11 @@ class MatadorHamiltonian(BaseModel):
     )
 
     geom_method: Optional[str] = Field(
-        ..., description="""Free text name of the method used to relax the structure."""
+        None, description="""Free text name of the method used to relax the structure."""
     )
 
     geom_force_tol: Optional[float] = Field(
-        ..., description="""The target force attempted by the relaxer."""
+        None, description="""The target force attempted by the relaxer."""
     )
 
     @validator("external_pressure", whole=True)
@@ -129,11 +129,11 @@ class MatadorCalculator(BaseModel):
     )
 
     commit_hash: Optional[str] = Field(
-        ..., description="The commit hash of the version, if available."
+        None, description="The commit hash of the version, if available."
     )
 
     architecture: Optional[str] = Field(
-        ..., description="Description of the compiler and architecture."
+        None, description="Description of the compiler and architecture."
     )
 
 
@@ -150,14 +150,14 @@ class MatadorThermodynamics(BaseModel):
     )
 
     formation_energy: Optional[float] = Field(
-        ..., description="""The computed formation energy per atom in eV."""
+        None, description="""The computed formation energy per atom in eV."""
     )
 
     hull_distance: Optional[float] = Field(
-        ..., description="""The computed distance from the convex hull in eV."""
+        None, description="""The computed distance from the convex hull in eV."""
     )
 
     relative_enthalpy: Optional[float] = Field(
-        ...,
+        None, 
         description="""The relative enthalpy per atom in eV, versus some appropriate reference calculation. """,
     )

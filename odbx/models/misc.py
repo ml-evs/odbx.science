@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import Schema, EmailStr
+from pydantic import Field, EmailStr
 from optimade.models.references import Person
 
 __all__ = ["MatadorPerson"]
@@ -8,21 +8,21 @@ __all__ = ["MatadorPerson"]
 class MatadorPerson(Person):
     """ Container for a person. """
 
-    email: EmailStr = Schema(
+    email: EmailStr = Field(
         ...,
         description="""Email address of the submitted, at the time of entry creation.""",
     )
 
-    forwarding_email: Optional[EmailStr] = Schema(
-        ...,
+    forwarding_email: Optional[EmailStr] = Field(
+        None, 
         description="""Optional contact email for the person, valid at the last modification time.""",
     )
 
-    identifier: str = Schema(
-        ...,
+    identifier: str = Field(
+        ..., 
         description="""Optional extra identifier for the person, if name or other is not known, for example their university ID.""",
     )
 
-    name: Optional[str] = Schema(
-        ..., description="""The full name of the submitter, if known."""
+    name: Optional[str] = Field(
+        None, description="""The full name of the submitter, if known."""
     )

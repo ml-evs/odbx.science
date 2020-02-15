@@ -89,7 +89,7 @@ class MatadorOptimadeTransformer:
                 MatadorPseudopotential(
                     identifier=doc._data["species_pot"][key],
                     species=key,
-                    pp_type="usp",
+                    pp_type="ultrasoft",
                 )
                 for key in doc._data["species_pot"]
             ],

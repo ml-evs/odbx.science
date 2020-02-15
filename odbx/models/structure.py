@@ -22,7 +22,7 @@ class MatadorSpaceGroup(BaseModel):
     )
 
     number: Optional[conint(gt=0, lt=231)] = Field(
-        ..., description="""The space group number from 1-230."""
+        None, description="""The space group number from 1-230."""
     )
 
 
@@ -66,25 +66,25 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     stress_tensor: Optional[List[List[float]]] = Field(
-        ..., description="""The computed stress tensor on the structure."""
+        None, description="""The computed stress tensor on the structure."""
     )
 
     forces: Optional[List[List[float]]] = Field(
-        ..., description="""The forces on each atom in the structure, in eV/A. """
+        None, description="""The forces on each atom in the structure, in eV/A. """
     )
 
     max_force_on_atom: Optional[float] = Field(
-        ...,
+        None, 
         description="""The norm of the maximum force on an atom in the structure in eV/A.""",
     )
 
-    tags: List[str] = Field(
-        default=[],
+    tags: Optional[List[str]] = Field(
+        None,
         description="""List of free text tags associated with the structure.""",
     )
 
     date: Optional[datetime.datetime] = Field(
-        ..., description="""Date on which calculation was performed."""
+        None, description="""Date on which calculation was performed."""
     )
 
     @validator("stress_tensor", whole=True)

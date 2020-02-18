@@ -11,10 +11,12 @@ services:
         STATIC_DIR: 'odbx/static/'
     ports:
       - '8080:80'
+      - '443:443'
     depends_on:
       - odbx
     volumes:
       - sockets:/tmp
+      - /tmp/keys/:/keys/
 
   odbx:
     restart: always

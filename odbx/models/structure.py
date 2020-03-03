@@ -1,13 +1,15 @@
 import datetime
 from pydantic import BaseModel, Field, conint, validator
-from typing import List, Optional
+from typing import List, Optional, Tuple, Union
 from optimade.models import StructureResourceAttributes
-from odbx.models.dft import MatadorThermodynamics, MatadorHamiltonian
+from odbx.models.dft import MatadorThermodynamics, MatadorHamiltonian, MatadorCalculator
 from odbx.models.misc import MatadorPerson
 from odbx.models.utils import check_shape
 
 __all__ = ["MatadorSpaceGroup", "MatadorStructureResourceAttributes"]
 
+
+Vector3D = Tuple[Union[float, None], Union[float, None], Union[float, None]]
 
 class MatadorSpaceGroup(BaseModel):
     """ Container for an spglib calculated space group. """
@@ -34,7 +36,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
         description="""The lattice parameters of the structure, in Angstrom and degrees.""",
     )
 
-    fractional_site_positions: List[List[float]] = Field(
+    fractional_site_positions: List[Vector3D] = Field(
         ..., description="""Fractional positions."""
     )
 
@@ -43,7 +45,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
         description="""The volume of the simulation cell used in the calculation, in Angstrom³.""",
     )
 
-    parameters: MatadorHamiltonian = Field(
+    dft_parameters: MatadorHamiltonian = Field(
         ...,
         description="""The ers/Hamiltonian used in the relaxation of this structure.""",
     )
@@ -52,13 +54,17 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
         ..., description="""Container for the energies computed for the structure."""
     )
 
+    calculator: MatadorCalculator = Field(
+        ..., description="""The calculator used for the calculation."""
+    )
+
     space_group: MatadorSpaceGroup = Field(
         ...,
         description="""The computed space group of the structure, calculated by spglib with symmetry tolerance of 0.001.""",
     )
 
-    submitter: MatadorPerson = Field(
-        ..., description="""The person nominally responsible for the calculation. """
+    submitter: Optional[MatadorPerson] = Field(
+        None, description="""The person nominally responsible for the calculation. """
     )
 
     stress: float = Field(

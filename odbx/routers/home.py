@@ -12,7 +12,8 @@ with open(Path(__file__).parent.joinpath("about.json"), "r") as f:
 
 async def homepage(request):
 
-    example_queries = ['elements HAS "Na"', 'chemical_formula_reduced="ClNa"']
+    with open(Path(__file__).parent.parent.joinpath('data/example_queries.txt'), 'r') as f:
+        example_queries = f.readlines()
 
     context = {
         "request": request,

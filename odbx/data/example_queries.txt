@@ -1,0 +1,2 @@
+elements HAS "Li"
+chemical_formula_reduced="Li17Sn4"

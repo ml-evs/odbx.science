@@ -7,19 +7,18 @@ services:
     build:
       context: .
       dockerfile: .docker/nginx_dockerfile
-      args:
-        STATIC_DIR: 'odbx/static/'
     ports:
       - '8080:80'
       - '443:443'
     depends_on:
       - odbx
     volumes:
-      - sockets:/tmp
-      - /tmp/keys/:/keys/
+      - sockets:/tmp/
+      - ./logs:/var/log/nginx
+      - ~/keys:/keys/
 
   odbx:
-    restart: always
+    restart: always 
     build:
       context: .
       dockerfile: .docker/odbx_dockerfile
@@ -28,17 +27,21 @@ services:
     depends_on:
       - mongo
     volumes:
-      - sockets:/tmp
-      - /data/structure_repository/:/data/structure_repository
+      - sockets:/tmp/
+      - ./logs:/app/logs/
+      - /data/structure_repository:/data/structure_repository
 
   mongo:
     restart: always
     build:
       context: .
       dockerfile: .docker/mongo_dockerfile
+    command: ["mongod", "-f", "/etc/mongod.conf"]
     volumes:
-        - sockets:/tmp
-        - /data/mongo/db:/data/db
+      - sockets:/tmp/
+      - ./logs:/var/logs/mongod/
+      - /data/db/mongo:/data/db
+
 
 volumes:
     sockets:

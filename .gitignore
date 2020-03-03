@@ -1,4 +1,5 @@
 __pycache__
 local_openapi.json
-odbx/js/lib
+odbx/static/js/lib
 logs/
+*egg-info

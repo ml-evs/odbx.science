@@ -2,6 +2,7 @@ import random
 import datetime
 import bson
 import numpy as np
+import pymongo as pm
 
 from typing import List, Union
 from optimade.models.structures import Species
@@ -45,14 +46,20 @@ class MatadorOptimadeTransformer:
         if references is not None:
             for ref in references:
                 ref["last_modified"] = datetime.datetime.now()
-            references = [
-                ReferenceResource(id=ref.pop("id"), attributes=ref).dict()
+            # check that all refs can be validated as ReferenceResources
+            [
+                ReferenceResource(id=ref["id"], attributes={key: ref[key] for key in ref if key != 'id'})
                 for ref in references
             ]
 
+            last_id = 0
+            curs = ENTRY_COLLECTIONS["structures"].collection.find({}).sort("_id", pm.DESCENDING).limit(1)
+            if len(list(curs)) == 1:
+                last_id = int(curs[0]["id"].split('/')[0])
+
         for ind, doc in tqdm.tqdm(enumerate(documents)):
             crys_doc = Crystal(doc)
-            structure = self.create_optimade_structure(crys_doc, ind)
+            structure = self.create_optimade_structure(crys_doc, last_id + 1 + ind)
             structure["relationships"] = {}
             structure["relationships"]["references"] = {}
             structure["relationships"]["references"]["data"] = [
@@ -100,16 +107,19 @@ class MatadorOptimadeTransformer:
     def construct_thermodynamics(self, doc: Crystal) -> MatadorThermodynamics:
         doc._data["enthalpy"] = doc._data["enthalpy_per_atom"]
         doc._data["total_energy"] = doc._data["total_energy_per_atom"]
+        doc._data["formation_energy"] = doc._data.get("formation_energy_per_atom")
+        if doc._data["formation_energy"] is None:
+            doc._data["formation_energy"] = doc._data.get("formation_enthalpy_per_atom")
         return MatadorThermodynamics(**doc._data)
 
     @classmethod
     def construct_submitter(self, doc: Crystal) -> Union[MatadorPerson, None]:
         """ Construct a MatadorPerson object, assuming the user field contains a CRSID. """
-        if "user" in doc._data:
-            user = doc._data["user"]
-            return MatadorPerson(identifier=user, email="web@odbx.science")
-
         return None
+        # if "user" in doc._data:
+            # user = doc._data["user"]
+            # return MatadorPerson(identifier=user, email="web@odbx.science")
+
 
     @classmethod
     def construct_calculator(self, doc: Crystal) -> Union[MatadorCalculator, None]:
@@ -198,14 +208,14 @@ class MatadorOptimadeTransformer:
             structure_attributes["immutable_id"] = str(doc._data["_id"])
         else:
             structure_attributes["immutable_id"] = str(bson.objectid.ObjectId())
-        if "date" in doc._data:
-            date = [int(val) for val in doc._data["date"].split("-")]
-            structure_attributes["date"] = datetime.date(
-                year=date[-1], month=date[1], day=date[0]
-            )
+        # if "date" in doc._data:
+            # date = [int(val) for val in doc._data["date"].split("-")]
+            # structure_attributes["date"] = datetime.date(
+                # year=date[-1], month=date[1], day=date[0]
+            # )
 
         # from matador extensions
-        structure_attributes["parameters"] = self.construct_dft_hamiltonian(doc)
+        structure_attributes["dft_parameters"] = self.construct_dft_hamiltonian(doc)
         structure_attributes["submitter"] = self.construct_submitter(doc)
         structure_attributes["thermodynamics"] = self.construct_thermodynamics(doc)
         structure_attributes["space_group"] = self.construct_spacegroup(doc)
@@ -215,7 +225,7 @@ class MatadorOptimadeTransformer:
         structure_attributes["stress"] = doc._data["pressure"]
         structure_attributes["forces"] = doc._data.get("forces")
         structure_attributes["max_force_on_atom"] = doc._data.get("max_force_on_atom")
-
+        
         return MatadorStructureResourceAttributes(**structure_attributes)
 
     def create_optimade_structure(self, doc: Crystal, int_id: int) -> dict:

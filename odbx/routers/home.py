@@ -12,7 +12,9 @@ with open(Path(__file__).parent.joinpath("about.json"), "r") as f:
 
 async def homepage(request):
 
-    with open(Path(__file__).parent.parent.joinpath('data/example_queries.txt'), 'r') as f:
+    with open(
+        Path(__file__).parent.parent.joinpath("data/example_queries.txt"), "r"
+    ) as f:
         example_queries = f.readlines()
 
     context = {

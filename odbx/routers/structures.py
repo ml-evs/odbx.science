@@ -36,7 +36,7 @@ structures_coll = OdbxMongoCollection(
     collection=CLIENT[CONFIG.mongo_database][CONFIG.structures_collection],
     resource_cls=StructureResource,
     resource_mapper=StructureMapper,
-    indexes=[IndexModel("id", unique=True)]
+    indexes=[IndexModel("id", unique=True)],
 )
 
 

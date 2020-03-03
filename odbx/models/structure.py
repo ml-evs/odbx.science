@@ -11,6 +11,7 @@ __all__ = ["MatadorSpaceGroup", "MatadorStructureResourceAttributes"]
 
 Vector3D = Tuple[Union[float, None], Union[float, None], Union[float, None]]
 
+
 class MatadorSpaceGroup(BaseModel):
     """ Container for an spglib calculated space group. """
 
@@ -80,13 +81,12 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     max_force_on_atom: Optional[float] = Field(
-        None, 
+        None,
         description="""The norm of the maximum force on an atom in the structure in eV/A.""",
     )
 
     tags: Optional[List[str]] = Field(
-        None,
-        description="""List of free text tags associated with the structure.""",
+        None, description="""List of free text tags associated with the structure.""",
     )
 
     date: Optional[datetime.datetime] = Field(

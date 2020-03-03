@@ -48,14 +48,22 @@ class MatadorOptimadeTransformer:
                 ref["last_modified"] = datetime.datetime.now()
             # check that all refs can be validated as ReferenceResources
             [
-                ReferenceResource(id=ref["id"], attributes={key: ref[key] for key in ref if key != 'id'})
+                ReferenceResource(
+                    id=ref["id"],
+                    attributes={key: ref[key] for key in ref if key != "id"},
+                )
                 for ref in references
             ]
 
             last_id = 0
-            curs = ENTRY_COLLECTIONS["structures"].collection.find({}).sort("_id", pm.DESCENDING).limit(1)
+            curs = (
+                ENTRY_COLLECTIONS["structures"]
+                .collection.find({})
+                .sort("_id", pm.DESCENDING)
+                .limit(1)
+            )
             if len(list(curs)) == 1:
-                last_id = int(curs[0]["id"].split('/')[0])
+                last_id = int(curs[0]["id"].split("/")[0])
 
         for ind, doc in tqdm.tqdm(enumerate(documents)):
             crys_doc = Crystal(doc)
@@ -117,9 +125,8 @@ class MatadorOptimadeTransformer:
         """ Construct a MatadorPerson object, assuming the user field contains a CRSID. """
         return None
         # if "user" in doc._data:
-            # user = doc._data["user"]
-            # return MatadorPerson(identifier=user, email="web@odbx.science")
-
+        # user = doc._data["user"]
+        # return MatadorPerson(identifier=user, email="web@odbx.science")
 
     @classmethod
     def construct_calculator(self, doc: Crystal) -> Union[MatadorCalculator, None]:
@@ -209,10 +216,10 @@ class MatadorOptimadeTransformer:
         else:
             structure_attributes["immutable_id"] = str(bson.objectid.ObjectId())
         # if "date" in doc._data:
-            # date = [int(val) for val in doc._data["date"].split("-")]
-            # structure_attributes["date"] = datetime.date(
-                # year=date[-1], month=date[1], day=date[0]
-            # )
+        # date = [int(val) for val in doc._data["date"].split("-")]
+        # structure_attributes["date"] = datetime.date(
+        # year=date[-1], month=date[1], day=date[0]
+        # )
 
         # from matador extensions
         structure_attributes["dft_parameters"] = self.construct_dft_hamiltonian(doc)
@@ -225,7 +232,7 @@ class MatadorOptimadeTransformer:
         structure_attributes["stress"] = doc._data["pressure"]
         structure_attributes["forces"] = doc._data.get("forces")
         structure_attributes["max_force_on_atom"] = doc._data.get("max_force_on_atom")
-        
+
         return MatadorStructureResourceAttributes(**structure_attributes)
 
     def create_optimade_structure(self, doc: Crystal, int_id: int) -> dict:

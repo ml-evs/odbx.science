@@ -1,3 +1,3 @@
 from .transformer import MatadorOptimadeTransformer
 
-__all__ = ['MatadorOptimadeTransformer']
+__all__ = ["MatadorOptimadeTransformer"]

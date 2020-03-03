@@ -49,17 +49,17 @@ class MatadorPseudopotential(BaseModel):
     )
 
     pp_type: Optional[MatadorPseudopotentialType] = Field(
-        None, 
+        None,
         description="""The overall type of the pseudopotential, must be one of ["ultrasoft", "norm-conserving", "paw"].""",
     )
 
     raw: Optional[str] = Field(
-        None, 
+        None,
         description="""The contents of the pseudopotential file used in the calculation.""",
     )
 
     scheme_desc: Optional[str] = Field(
-        None, 
+        None,
         description="""Descrition of psedopotential generation scheme e.g. 'vanderbilt-usp' or 'paw'""",
     )
 
@@ -101,7 +101,8 @@ class MatadorHamiltonian(BaseModel):
     )
 
     geom_method: Optional[str] = Field(
-        None, description="""Free text name of the method used to relax the structure."""
+        None,
+        description="""Free text name of the method used to relax the structure.""",
     )
 
     geom_force_tol: Optional[float] = Field(
@@ -158,6 +159,6 @@ class MatadorThermodynamics(BaseModel):
     )
 
     relative_enthalpy: Optional[float] = Field(
-        None, 
+        None,
         description="""The relative enthalpy per atom in eV, versus some appropriate reference calculation. """,
     )

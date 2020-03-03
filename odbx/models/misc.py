@@ -14,12 +14,12 @@ class MatadorPerson(Person):
     )
 
     forwarding_email: Optional[EmailStr] = Field(
-        None, 
+        None,
         description="""Optional contact email for the person, valid at the last modification time.""",
     )
 
     identifier: str = Field(
-        ..., 
+        ...,
         description="""Optional extra identifier for the person, if name or other is not known, for example their university ID.""",
     )
 

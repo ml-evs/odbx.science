@@ -3,7 +3,7 @@
         <th> Code Version </th>
     </tr>
         <td>
-            {{ dict(structure_info['data']['attributes']).get('_odbx_dft_code', {}).get('_odbx_code_name', 'CASTEP 20.1 +abdfx8') }}
+            {{ "{}".format(structure_info['data']['attributes']['_odbx_calculator']['name']) }}
         </td>
     </tr>
     <tr>
@@ -11,15 +11,15 @@
     </tr>
     <tr>
         <td>
-            {{ dict(structure_info['data']['attributes']).get('_odbx_dft_parameters', {}).get('_odbx_xc_functional', 'PBE') }}
+            {{ "{}".format(structure_info['data']['attributes']['_odbx_dft_parameters']['xc_functional']) }}
         </td>
     </tr>
     <tr>
-        <th> Cutoff energy </th>
+        <th> Cut-off energy </th>
     </tr>
     <tr>
         <td>
-            {{ "{:4.0f}".format(dict(structure_info['data']['attributes']).get('_odbx_dft_parameters', {}).get('_odbx_cutoff_energy', 800.0)) }} eV
+            {{ "{}".format(structure_info['data']['attributes']['_odbx_dft_parameters']['cut_off_energy']) }} eV
         </td>
     </tr>
 </table>

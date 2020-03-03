@@ -19,7 +19,7 @@
         <td> 
             {% for atom in structure_info['data']['attributes']['species_at_sites'] %}
                 {{ "{:3}".format(atom)}}
-                {% for elem in structure_info['data']['attributes']['cartesian_site_positions'][loop.index-1] %}
+                {% for elem in structure_info['data']['attributes']['_odbx_fractional_site_positions'][loop.index-1] %}
                     {{ "{:+9.3f}".format(elem).replace('+', '&nbsp;')|safe}}
                 {% endfor %}
                 </br>

@@ -1,10 +1,10 @@
 <div class="header_container">
     <div class="odbx_title">
-        <a href={{ url_for("homepage") }}>odbx</a>
+        <a href={{ url_for("homepage").replace('http', 'https') }}>odbx</a>
     </div>
     <div class="spacer" style="flex: 1">
     </div>
     <div class="topnav">
-        <a href={{ url_for("homepage") }}><i class="fa fa-search"></i></a>
+        <a href={{ url_for("homepage").replace('http', 'https') }}><i class="fa fa-search"></i></a>
     </div> 
 </div>

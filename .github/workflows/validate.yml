@@ -14,6 +14,7 @@ jobs:
       uses: CasperWA/optimade-python-tools@make_validator_github_action
       with:
         protocol: https
+        port: 443
         domain: odbx.science
         path: /optimade/
         all versioned paths: True
@@ -21,6 +22,7 @@ jobs:
       uses: CasperWA/optimade-python-tools@make_validator_github_action
       with:
         protocol: http
+        port: 80
         domain: odbx.science
         path: /optimade/
         all versioned paths: True

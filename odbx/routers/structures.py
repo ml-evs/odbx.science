@@ -3,6 +3,7 @@
 from typing import Union
 from pathlib import Path
 
+from pymongo import IndexModel
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
 
@@ -35,6 +36,7 @@ structures_coll = OdbxMongoCollection(
     collection=CLIENT[CONFIG.mongo_database][CONFIG.structures_collection],
     resource_cls=StructureResource,
     resource_mapper=StructureMapper,
+    indexes=[IndexModel("id", unique=True)]
 )
 
 

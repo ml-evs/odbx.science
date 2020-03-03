@@ -62,8 +62,3 @@ app.include_router(landing.router, prefix=BASE_URL_PREFIXES["major"])
 rich_prefix = ""  # odbx
 app.include_router(routers.structures.router, prefix=rich_prefix)  # odbx
 app.include_router(routers.home.router, prefix=rich_prefix)  # odbx
-
-js_dir = Path(__file__).parent.joinpath("js")  # odbx
-css_dir = Path(__file__).parent.joinpath("css")  # odbx
-app.mount("/js", StaticFiles(directory=js_dir), name="js")  # odbx
-app.mount("/css", StaticFiles(directory=css_dir), name="css")  # odbx

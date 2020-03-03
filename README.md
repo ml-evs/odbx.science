@@ -24,10 +24,12 @@ As of 02/12/19, the server runs as an RCS OpenStack VM (quadcore Haswell, 8 GB R
 The site now runs as 3 coupled docker containers, with shared `/tmp/` volume, deployed and built with `docker-compose`:
 - `odbxscience_mongo` runs a near-default MongoDB.
 - `odbxscienc_odbx` runs `gunicorn` that connects to the mongo via `/tmp/mongodb-27017.sock` and serves the JSON and HTML responses.
-- `odbxscience_nginx` runs `nginx` that takes requests on port 80 and forwards them onto `gunicorn` via `/tmp/gunicorn.sock`, as well as hosting static content.
+- `odbxscience_nginx` runs `nginx` that takes HTTP/HTTPS requests and forwards them onto `gunicorn` via `/tmp/gunicorn.sock`, as well as hosting static content.
 
 ## Domains & SSL
 
 - The domain `odbx.science` was purchased until 2023 from Namecheap, which currently redirects to the public IP of the VM.
 - All `*@odbx.science` email addresses currently redirect to my personal account.
 - The domain came with a 1 year SSL certificate (~£4 year after), but free alternatives exists (consider e.g. `cert-bot`).
+
+SSL is currently provided by PositiveSSL via Namecheap. To complete the SSL chain from the certificates provided, I had to follow some of the instructions in the [docs](http://nginx.org/en/docs/http/configuring_https_servers.html#chains).

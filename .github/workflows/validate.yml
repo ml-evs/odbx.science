@@ -7,22 +7,24 @@ on:
 
 jobs:
   validate:
-    name: OPTiMaDe validator
+    name: Validate
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up Python
-      uses: actions/setup-python@v1
+    - name: Validate HTTPS
+      uses: CasperWA/optimade-python-tools@make_validator_github_action
       with:
-        python-version: 3.7
-    - name: Install OPTiMaDe
-      run: |
-        python -m pip install --upgrade pip
-        pip install git+https://github.com/Materials-Consortia/optimade-python-tools
-    - name: Validate
-      run: |
-        optimade_validator http://odbx.science/optimade/v0
-
+        protocol: https
+        domain: odbx.science
+        path: /optimade/
+        all versioned paths: True
+    - name: Validate HTTP
+      uses: CasperWA/optimade-python-tools@make_validator_github_action
+      with:
+        protocol: http
+        domain: odbx.science
+        path: /optimade/
+        all versioned paths: True
+  
   lint:
     name: Lint
     runs-on: ubuntu-latest

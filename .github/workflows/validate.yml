@@ -3,7 +3,7 @@ name: Remote validator
 on:
   push:
   schedule:
-     - cron:  '0 0 * * *'
+     - cron:  '13 * * * *'
 
 jobs:
   validate:
@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Validate HTTPS
-      uses: CasperWA/optimade-python-tools@make_validator_github_action
+      uses: Materials-Consortia/optimade-python-tools@master
       with:
         protocol: https
         domain: odbx.science
         path: /optimade
         all versioned paths: True
     - name: Validate HTTP
-      uses: CasperWA/optimade-python-tools@make_validator_github_action
+      uses: Materials-Consortia/optimade-python-tools@master
       with:
         protocol: http
         domain: odbx.science

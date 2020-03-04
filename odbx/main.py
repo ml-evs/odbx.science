@@ -16,7 +16,6 @@ from starlette.staticfiles import StaticFiles  # odbx
 
 from optimade import __api_version__
 from optimade.server.routers import info, links, references, structures, landing
-from optimade.server.middleware import RedirectSlashedURLs
 from optimade.server.routers.utils import BASE_URL_PREFIXES
 
 import optimade.server.exception_handlers as exc_handlers
@@ -32,8 +31,6 @@ app = FastAPI(
     redoc_url=f"{BASE_URL_PREFIXES['major']}/extensions/redoc",
     openapi_url=f"{BASE_URL_PREFIXES['major']}/extensions/openapi.json",
 )
-
-app.add_middleware(RedirectSlashedURLs)
 
 app.add_exception_handler(StarletteHTTPException, exc_handlers.http_exception_handler)
 app.add_exception_handler(

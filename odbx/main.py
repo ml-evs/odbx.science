@@ -24,7 +24,9 @@ from . import routers  # odbx
 from .routers import ABOUT
 
 for prefix in BASE_URL_PREFIXES:
-    BASE_URL_PREFIXES[prefix] = ('/optimade/' + BASE_URL_PREFIXES[prefix]).replace('//', '/')
+    BASE_URL_PREFIXES[prefix] = ("/optimade/" + BASE_URL_PREFIXES[prefix]).replace(
+        "//", "/"
+    )
 
 app = FastAPI(
     title=ABOUT["title"],

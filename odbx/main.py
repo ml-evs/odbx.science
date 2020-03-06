@@ -23,6 +23,9 @@ import optimade.server.exception_handlers as exc_handlers
 from . import routers  # odbx
 from .routers import ABOUT
 
+for prefix in BASE_URL_PREFIXES:
+    BASE_URL_PREFIX[prefix] = ('/optimade/' + BASE_URL_PREFIX[prefix]).replace('//', '/')
+
 app = FastAPI(
     title=ABOUT["title"],
     description=ABOUT["about"],

@@ -1,7 +1,7 @@
-from optimade.server.mappers import ResourceMapper
+from optimade.server.mappers import BaseResourceMapper
 
 
-class StructureMapper(ResourceMapper):
+class StructureMapper(BaseResourceMapper):
     ENDPOINT = "structures"
 
 

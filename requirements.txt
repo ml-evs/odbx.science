@@ -1,5 +1,5 @@
 -e git://github.com/ml-evs/matador.git#egg=matador
-optimade[server]>=0.6
+optimade==0.7[server]
 gunicorn>=20.0.4
 aiofiles>=0.4.0
 Jinja2>=2.11.1

@@ -30,7 +30,7 @@ class MatadorSpaceGroup(BaseModel):
 
 
 class MatadorStructureResourceAttributes(StructureResourceAttributes):
-    """ Extends the OPTiMaDe spec for matador-specific keys. """
+    """ Extends the OPTIMADE spec for matador-specific keys. """
 
     lattice_abc: List[List[float]] = Field(
         ...,

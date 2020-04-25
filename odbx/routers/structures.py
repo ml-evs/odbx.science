@@ -1,7 +1,6 @@
 """ odbx version of optimade.server.routers.structures.py, including templates. """
 
 from typing import Union
-from pathlib import Path
 
 from pymongo import IndexModel
 from fastapi import APIRouter, Depends
@@ -136,7 +135,7 @@ def get_single_structure(
     response_model_exclude_unset=True,
     tags=["Structure"],
 )
-def get_single_structure(
+def get_single_cif(
     request: Request, entry_id: str, params: SingleEntryQueryParams = Depends()
 ):
     from optimade.adapters import Structure

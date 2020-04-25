@@ -30,7 +30,20 @@ services:
       - sockets:/tmp/
       - ./odbx/static:/app/static/
       - ./logs:/app/logs/
-      - /data/structure_repository:/data/structure_repository
+  
+  odbx_rest:
+    restart: always 
+    build:
+      context: .
+      dockerfile: .docker/odbx_rest_dockerfile
+    environment:
+      MAIN: main
+      OPTIMADE_CONFIG_FILE: /app/optimade_config.json
+    depends_on:
+      - mongo
+    volumes:
+      - sockets:/tmp/
+      - ./logs:/app/logs/
 
   mongo:
     restart: always
@@ -42,7 +55,6 @@ services:
       - sockets:/tmp/
       - ./logs:/var/logs/mongod/
       - /data/db/mongo:/data/db
-
 
 volumes:
     sockets:

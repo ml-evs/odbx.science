@@ -6,13 +6,13 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY odbx ./odbx
+COPY odbx/static /app/static
 
 ENV PYTHONPATH "/app/"
 
 # copy configs and startup scripts
 COPY optimade_config.json README.md ./
 COPY scripts/start_production.sh ./run.sh
-
 
 # run web server
 CMD ["/app/run.sh"]

@@ -10,10 +10,9 @@ services:
     ports:
       - '8080:80'
       - '443:443'
-    depends_on:
-      - odbx
     volumes:
       - sockets:/tmp/
+      - ./odbx/static:/app/static
       - ./logs:/var/log/nginx
       - ~/keys:/keys/
 
@@ -29,6 +28,7 @@ services:
       - mongo
     volumes:
       - sockets:/tmp/
+      - ./odbx/static:/app/static/
       - ./logs:/app/logs/
       - /data/structure_repository:/data/structure_repository
 

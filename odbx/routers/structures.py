@@ -155,8 +155,11 @@ def get_single_structure(
         "Content-Type": "text/plain",
         "Content-Disposition": f"attachment;filename={filename};",
     }
+    cif_list = adapter.as_cif.split("\n")
+    num_lines = len(cif_list)
+    cif_generator = (f"{line}\n" if ind != num_lines - 1 else line for ind, line in enumerate(cif_list))
     return StreamingResponse(
-        (f"{line}\n" for line in adapter.as_cif.split("\n")),
+        cif_generator,
         media_type="text/plain",
         headers=headers,
     )

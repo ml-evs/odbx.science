@@ -63,7 +63,7 @@ class MatadorOptimadeTransformer:
                 .limit(1)
             )
             if len(list(curs)) == 1:
-                last_id = int(curs[0]["id"].split("/")[0])
+                last_id = int(curs[0]["id"].split("odbx_")[1])
 
         for ind, doc in tqdm.tqdm(enumerate(documents)):
             crys_doc = Crystal(doc)

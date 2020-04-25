@@ -389,6 +389,20 @@ footer a {
   color: var(--odbx_main_color);
 }
 
+
+.export_button {
+  padding: 10px;
+  font-size: 0.5em;
+  text-decoration: none;
+  color: var(--odbx_pale_blue);
+}
+
+.export_button:hover {
+  background-color: var(--odbx_white);
+  color: var(--odbx_main_color);
+  text-decoration: underline wavy var(--odbx_main_color) 2px;
+}
+
 canvas.ChemDoodleWebComponent {
 	border: 1px solid var(--odbx_grey);
   border-radius: var(--odbx_border_radius);

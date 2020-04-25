@@ -6,6 +6,7 @@ from pathlib import Path
 from pymongo import IndexModel
 from fastapi import APIRouter, Depends
 from starlette.requests import Request
+from starlette.responses import StreamingResponse
 
 from optimade.models import (
     ErrorResponse,
@@ -26,11 +27,6 @@ from ..entry_collections import CLIENT, OdbxMongoCollection
 
 router = APIRouter()
 
-
-with open(Path(__file__).resolve().parent.joinpath("test.cif"), "r") as f:
-    cif_string = "".join(
-        [line for line in f.readlines() if not line.strip().startswith("#")]
-    ).replace("'", "\\'")
 
 structures_coll = OdbxMongoCollection(
     collection=CLIENT[CONFIG.mongo_database][CONFIG.structures_collection],
@@ -126,8 +122,41 @@ def get_single_structure(
             "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
             "odbx_cif_string": optimade_to_basic_cif(response.data),
             "structure_info": dict(response),
+            "cif_link": str(request.url).replace("structures/", "cif/"),
             "stoichiometry": stoichiometry,
         }
     )
 
     return TEMPLATES.TemplateResponse("structure.html", context)
+
+
+@router.get(
+    "/cif/{entry_id:path}",
+    response_model=Union[StructureResponseOne, ErrorResponse],
+    response_model_exclude_unset=True,
+    tags=["Structure"],
+)
+def get_single_structure(
+    request: Request, entry_id: str, params: SingleEntryQueryParams = Depends()
+):
+    from optimade.adapters import Structure
+
+    response = get_single_entry(
+        collection=structures_coll,
+        entry_id=entry_id,
+        request=request,
+        params=params,
+        response=StructureResponseOne,
+    )
+
+    adapter = Structure(response.data.dict())
+    filename = entry_id.replace("/", "_") + ".cif"
+    headers = {
+        "Content-Type": "text/plain",
+        "Content-Disposition": f"attachment;filename={filename};",
+    }
+    return StreamingResponse(
+        (f"{line}\n" for line in adapter.as_cif.split("\n")),
+        media_type="text/plain",
+        headers=headers,
+    )

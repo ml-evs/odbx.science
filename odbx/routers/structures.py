@@ -156,9 +156,8 @@ def get_single_cif(
     }
     cif_list = adapter.as_cif.split("\n")
     num_lines = len(cif_list)
-    cif_generator = (f"{line}\n" if ind != num_lines - 1 else line for ind, line in enumerate(cif_list))
-    return StreamingResponse(
-        cif_generator,
-        media_type="text/plain",
-        headers=headers,
+    cif_generator = (
+        f"{line}\n" if ind != num_lines - 1 else line
+        for ind, line in enumerate(cif_list)
     )
+    return StreamingResponse(cif_generator, media_type="text/plain", headers=headers,)

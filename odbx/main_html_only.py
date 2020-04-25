@@ -17,11 +17,7 @@ import optimade.server.exception_handlers as exc_handlers
 from . import routers  # odbx
 from .routers import ABOUT
 
-app = FastAPI(
-    title=ABOUT["title"],
-    description=ABOUT["about"],
-    version=__api_version__
-)
+app = FastAPI(title=ABOUT["title"], description=ABOUT["about"], version=__api_version__)
 
 app.add_exception_handler(StarletteHTTPException, exc_handlers.http_exception_handler)
 app.add_exception_handler(

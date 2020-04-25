@@ -17,9 +17,9 @@ from .routers import ABOUT
 
 
 # for prefix in BASE_URL_PREFIXES:
-    # BASE_URL_PREFIXES[prefix] = (BASE_URL_PREFIXES[prefix]).replace(
-        # "//", "/"
-    # )
+# BASE_URL_PREFIXES[prefix] = (BASE_URL_PREFIXES[prefix]).replace(
+# "//", "/"
+# )
 
 
 app = FastAPI(

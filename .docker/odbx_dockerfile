@@ -10,7 +10,7 @@ COPY odbx ./odbx
 ENV PYTHONPATH "/app/"
 
 # copy configs and startup scripts
-COPY server.cfg optimade_config.ini README.md ./
+COPY optimade_config.json README.md ./
 COPY scripts/start_production.sh ./run.sh
 
 

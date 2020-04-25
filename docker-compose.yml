@@ -24,6 +24,7 @@ services:
       dockerfile: .docker/odbx_dockerfile
     environment:
       MAIN: main
+      OPTIMADE_CONFIG_FILE: /app/optimade_config.json
     depends_on:
       - mongo
     volumes:

@@ -6,7 +6,7 @@
         <td> {{ structure_info['data']['attributes']['nsites'] }} </td>
     </tr>
     <tr>
-        <th>Space Group</th>
+        <th>Space group</th>
     </tr>
     <tr>
         <td>
@@ -14,9 +14,9 @@
         </td> 
     </tr>
     <tr>
-        <th> Cell Volume (Å³) </th>
+        <th> Cell volume (Å³) </th>
     </tr>
     <tr>
-        <td>{{ "%4.3f" | format(structure_info['data']['attributes']['_odbx_cell_volume']) }}</td>
+        <td>{{ "%4.1f" | format(structure_info['data']['attributes']['_odbx_cell_volume']) }}</td>
     </tr>
 </table>

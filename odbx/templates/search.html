@@ -17,7 +17,7 @@
             Example queries:
             <div class="example_queries">
                 {% for query in example_queries %}
-                    {{ "<a class=\"query_font\" href='./structures?filter={}'>{}</a>".format(query, query) | safe }}
+                    {{ "<a class=\"query_font\" href='./structures?filter={}'>{}</a>".format(query.strip(), query.strip()) | safe }}
                 {% endfor %}
             </div>
         </div>

@@ -5,6 +5,7 @@
     --odbx_dark_grey: #4E4E4E;
     --odbx_pale_grey: #D3D3D3;
     --odbx_pale_blue: #6C91A7;
+    --odbx_dark_bg: #333;
     --odbx_pale_green: #8EC07C;
     --odbx_pale_yellow: #FFAF00;
     --odbx_white: #FFFFFF;
@@ -14,16 +15,14 @@
     --odbx_min_width: 800px;
 }
 
-html {
-    background-color: #333;
-    padding: 0;
-    margin: 0;
-}
-
 body {    
     background-color: var(--odbx_dark_grey);
     padding: 0;
     margin: 0;
+}
+
+body, html {
+    height: 100vh;
 }
 
 body,h1,h2,h3,h4,h5 {
@@ -45,22 +44,17 @@ body {
     color: black;
 }
 
-
-
 .content {
-    width: var(--odbx_min_width);
+    min-width: var(--odbx_min_width);
+    max-width: 800px;
     display: flex;
-    border: 2px solid var(--odbx_dark_grey);
-    box-shadow: var(--odbx_box_shadow);
-    border-radius: 0;
     flex-direction: column;
     background-color: var(--odbx_light_grey);
     margin: 0;
+    min-height: 80%;
     margin-left: auto;
-    min-height: 800px;
     margin-right: auto;
-    margin-bottom: 90px;
-    padding-bottom: 50px;
+    margin-bottom: 0px;
     clear: both;
 }
 
@@ -106,7 +100,6 @@ body {
     margin-top: 20px;
     align: center;
     text-align: center;
-
 }
 
 .header_text {
@@ -139,7 +132,6 @@ th {
     background-color: var(--odbx_light_grey);
     padding-top: 5px;
     padding-bottom: 0px;
-    align:center;
     text-align:center;
     font-weight: normal;
     font-size: 1.1em;
@@ -150,7 +142,6 @@ th {
 
 td {
     font-family: "IBM Plex Mono", monospace;
-    align:center;
     text-align:center;
     padding-top: 2px;
     padding-bottom: 10px;
@@ -162,28 +153,28 @@ td {
 .columns {
     display: flex;
     align-items: left;
+    margin-left: auto;
+    margin-right: auto;
     flex-wrap: wrap;
     width: 100%;
     margin: auto;
     flex-direction: row;
     justify-content: center;
-
 }
 
-.structure_header {
+.structure_header, .structures_header {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+    
+.structure_header {
     width: 35%;
     text-align: center;
 }
 
 .structures_header {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
     width: 85%;
     text-align: left;
 }
@@ -244,6 +235,10 @@ th {
 
 .structures_table {
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    align: center;
+    text-align:center;
     border-radius: 0;
     border: solid 1px var(--odbx_grey);
     padding: 0;
@@ -260,6 +255,7 @@ th {
 
 .structures_table tr {
     border: solid 1px var(--odbx_grey);
+    text-align: left;
 }
 
 .structures_table tr:nth-child(even) {
@@ -304,7 +300,7 @@ th {
 }
 
 header {
-  background-color: #333;
+  background-color: var(--odbx_dark_bg);
   padding-top:20px;
   padding-bottom:20px;
 }
@@ -321,24 +317,20 @@ header {
 }
 
 footer {
-  background-color: #333;
+  background-color: var(--odbx_dark_bg);
   margin-left: auto;
   margin-right: auto;
-  position: fixed;
-  left: 0;
+  /*position: fixed;*/
   bottom: 0;
   width: 100%;
-  min-height: 90px;
-  max-height: 90px;
+  height: 90px;
+  text-align: center;
 }
 
 .footer_text {
-  background-color: #333;
-  width: 800px;
   margin-left: auto;
   margin-right: auto;
   color: white;
-  text-align: center;
   font-size: 16px;
   padding: 5px;
 }
@@ -370,15 +362,22 @@ footer a {
 }
 
 .example_queries {
-    padding: 30px; 
-    font-size:0.8em; 
-    margin-left:auto; 
-    margin-right:auto;
-    width:85%;
+  /*padding: 30px; */
+  align: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-left:auto; 
+  margin-right:auto;
+  width:85%;
 }
 
 .example_queries a {
+  align: center;
+  text-align: center;
   text-decoration: none;
+  border: solid 1px var(--odbx_dark_grey);
+  background-color: var(--odbx_pale_grey);
+  font-size: 0.7em;
   color: var(--odbx_pale_blue);
   padding: 10px;
 }
@@ -389,23 +388,36 @@ footer a {
   color: var(--odbx_main_color);
 }
 
-
 .export_button {
-  padding: 10px;
-  font-size: 0.5em;
-  text-decoration: none;
-  color: var(--odbx_pale_blue);
+  margin-left: auto; 
+  margin-right: auto;
+  margin-bottom: 30px; 
+  margin-top: 1px;
+  align: center;
+  text-align: center;
 }
 
-.export_button:hover {
+.export_button a{
+  font-size: 1.2em; 
+  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   background-color: var(--odbx_white);
+  color: var(--odbx_pale_blue);
+  margin-top: 0px;
+	border: 1px solid var(--odbx_grey);
   color: var(--odbx_main_color);
-  text-decoration: underline wavy var(--odbx_main_color) 2px;
+}
+
+.export_button a:hover {
+  text-decoration: none;
+  background-color: var(--odbx_light_grey);
+  color: var(--odbx_pale_blue);
 }
 
 canvas.ChemDoodleWebComponent {
 	border: 1px solid var(--odbx_grey);
   border-radius: var(--odbx_border_radius);
   box-shadow: var(--odbx_box_shadow);
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }

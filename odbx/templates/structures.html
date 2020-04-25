@@ -10,31 +10,25 @@
 
 <div class="content">
     <div class="structures_header" style="font-size: 18px;">
-        {{ "Displaying {} results of {} for the query:".format(n_results, data_available) }}
+        {{ "Displaying {} result(s) out of {} for the query:".format(n_results, data_available) }}
         <div style="margin: 10px; margin-left: auto; margin-right:auto; width: 100%;">
             <span class="query_font" style="text-align: center; font-size: 0.7em;">
                 {{ query }}
             </span> </div>
     </div>
-    <div class="columns"> 
-        <table class="structures_table">
+    <table class="structures_table">
+        <tr>
+            <th> ID </th> <th> Chemical Formula </th> <th> Space Group </th> <th> # of Atoms </th>
+        </tr>
+        {% for structure in results %}
             <tr>
-                <th> ID </th> <th> Chemical Formula </th> <th> Space Group </th> <th> # of Atoms </th>
+                <td>{{ "<a href=\"./structures/{}\"> {}".format(structure.id, structure.id) | safe }}</td>
+                <td>{{ structure.attributes.chemical_formula_descriptive }}</td>
+                <td>{{ structure.attributes._odbx_space_group.symbol }}</td>
+                <td style="text-align:right">{{ structure.attributes.nsites }}</td>
             </tr>
-            {% for structure in results %}
-            
-                <tr>
-                    <td style="text-align: left">{{ "<a href=\"./structures/{}\"> {}".format(structure.id, structure.id) | safe }}</td>
-                    <td style="text-align: left">{{ structure.attributes.chemical_formula_descriptive }}</td>
-                    <td style="text-align:left">{{ structure.attributes._odbx_space_group.symbol }}</td>
-                    <td style="text-align:right">{{ structure.attributes.nsites }}</td>
-                </tr>
-
-            {% endfor %}
-
-        </table>
-                
-    </div>
+        {% endfor %}
+    </table>
 </div>
 
 {% endblock content %}

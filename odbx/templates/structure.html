@@ -16,7 +16,7 @@
                 </div>
                 <span class="formula_title">
                     {% for (elem, num) in stoichiometry %}
-                    {{ "<span class=\"elements {elem}\">{elem}{num}</span>".format(elem=elem, num=num if num != 1)|safe }}
+                    {{ "<span class=\"elements {elem}\">{elem}<sub>{num}</sub></span>".format(elem=elem, num=num if num != 1)|safe }}
                     {% endfor %}
                 </span>
             </div>
@@ -38,8 +38,6 @@
         </div>
         <div class="deck" id="info">
             {% include "energy_info.html" %}
-        <!--</div>-->
-        <!--<div class="deck" id="info">-->
             {% include "dft_info.html" %}
         </div>
     </div>

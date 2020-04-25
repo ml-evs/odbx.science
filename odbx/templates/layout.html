@@ -16,14 +16,14 @@
         {% endblock %}
         
     </head>
-    <header>
-        {% include "header.html" %}
-    </header>
     <body>
+        <header>
+            {% include "header.html" %}
+        </header>
         {% block content %}{% endblock %}
+        <footer>
+            {% include "footer.html" %}
+        </footer>
     </body>
-    <footer>
-        {% include "footer.html" %}
-    </footer>
 
 </html>

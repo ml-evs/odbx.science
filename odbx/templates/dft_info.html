@@ -1,13 +1,13 @@
 <table class="dft_table">
     <tr>
-        <th> Code Version </th>
+        <th> Code version </th>
     </tr>
         <td>
-            {{ "{}".format(structure_info['data']['attributes']['_odbx_calculator']['name']) }}
+            {{ "{} v{}".format(structure_info['data']['attributes']['_odbx_calculator']['name'], structure_info['data']['attributes']['_odbx_calculator']['version_major']) }}
         </td>
     </tr>
     <tr>
-        <th> xc-functional </th>
+        <th> <i>xc</i> functional </th>
     </tr>
     <tr>
         <td>
@@ -20,6 +20,22 @@
     <tr>
         <td>
             {{ "{}".format(structure_info['data']['attributes']['_odbx_dft_parameters']['cut_off_energy']) }} eV
+        </td>
+    </tr>
+    <tr>
+        <th> <i>k</i>-point spacing </th>
+    </tr>
+    <tr>
+        <td>
+            {{ "%1.3f" | format(structure_info['data']['attributes']['_odbx_dft_parameters']['kpoint_spacing']) }} 1/Å
+        </td>
+    </tr>
+    <tr>
+        <th> Force tolerance </th>
+    </tr>
+    <tr>
+        <td>
+            {{ "%1.3f" | format(structure_info['data']['attributes']['_odbx_dft_parameters']['geom_force_tol']) }} eV/Å
         </td>
     </tr>
 </table>

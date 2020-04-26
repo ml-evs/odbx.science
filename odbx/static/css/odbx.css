@@ -313,7 +313,7 @@ header {
   align-content: center;
   flex-direction: row;
   min-width: var(--odbx_min_width);
-  max-width: var(--odbx_min_width);
+  max-width: 800px;
 }
 
 footer {

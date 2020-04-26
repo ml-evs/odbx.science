@@ -15,6 +15,8 @@ services:
       - ./odbx/static:/app/static
       - ./logs:/var/log/nginx
       - ~/keys:/keys/
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
 
   odbx:
     restart: always 
@@ -55,6 +57,13 @@ services:
       - sockets:/tmp/
       - ./logs:/var/logs/mongod/
       - /data/db/mongo:/data/db
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
     sockets:

@@ -15,12 +15,14 @@ jobs:
       with:
         protocol: https
         domain: optimade.odbx.science
+        path: /
         all versioned paths: True
     - name: Validate HTTP
       uses: Materials-Consortia/optimade-validator-action@v1
       with:
         protocol: http
         domain: optimade.odbx.science
+        path: /
         all versioned paths: True
   
   lint:

@@ -16,12 +16,6 @@ from optimade.server.routers.utils import BASE_URL_PREFIXES
 from .routers import ABOUT
 
 
-# for prefix in BASE_URL_PREFIXES:
-# BASE_URL_PREFIXES[prefix] = (BASE_URL_PREFIXES[prefix]).replace(
-# "//", "/"
-# )
-
-
 app = FastAPI(
     title=ABOUT["title"],
     description=ABOUT["about"],
@@ -58,17 +52,10 @@ app.include_router(structures.router, prefix=BASE_URL_PREFIXES["major"])
 app.include_router(landing.router)
 app.include_router(landing.router, prefix=BASE_URL_PREFIXES["major"])
 
-
-def add_optional_versioned_base_urls(app: FastAPI):
-    """Add the following OPTIONAL prefixes/base URLs to server:
-    ```
-        /vMajor.Minor
-        /vMajor.Minor.Patch
-    ```
-    """
-    for version in ("minor", "patch"):
-        app.include_router(info.router, prefix=BASE_URL_PREFIXES[version])
-        app.include_router(links.router, prefix=BASE_URL_PREFIXES[version])
-        app.include_router(references.router, prefix=BASE_URL_PREFIXES[version])
-        app.include_router(structures.router, prefix=BASE_URL_PREFIXES[version])
-        app.include_router(landing.router, prefix=BASE_URL_PREFIXES[version])
+# Enable versioned paths
+for version in ("minor", "patch"):
+    app.include_router(info.router, prefix=BASE_URL_PREFIXES[version])
+    app.include_router(links.router, prefix=BASE_URL_PREFIXES[version])
+    app.include_router(references.router, prefix=BASE_URL_PREFIXES[version])
+    app.include_router(structures.router, prefix=BASE_URL_PREFIXES[version])
+    app.include_router(landing.router, prefix=BASE_URL_PREFIXES[version])

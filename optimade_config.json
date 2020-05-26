@@ -7,7 +7,7 @@
     "references_collection": "references",
     "structures_collection": "structures",
     "default_db": "odbx",
-    "base_url": "https://odbx.science/optimade",
+    "base_url": "https://optimade.odbx.science",
     "implementation": {
         "name": "odbx.science",
         "source_url": "https://github.com/ml-evs/odbx.science",

@@ -41,7 +41,8 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     fractional_site_positions: List[Vector3D] = Field(
-        ..., description="""A list of the fractional positions of sites in the structure."""
+        ...,
+        description="""A list of the fractional positions of sites in the structure.""",
     )
 
     cell_volume: float = Field(

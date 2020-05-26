@@ -20,7 +20,9 @@ from .routers import ABOUT
 
 
 app = FastAPI(
-    title=ABOUT["title"], description=ABOUT["about"], version=__api_version__,
+    title=ABOUT["title"],
+    description=ABOUT["about"],
+    version=__api_version__,
     docs_url=f"{BASE_URL_PREFIXES['major']}/extensions/docs",
     redoc_url=f"{BASE_URL_PREFIXES['major']}/extensions/redoc",
     openapi_url=f"{BASE_URL_PREFIXES['major']}/extensions/openapi.json",

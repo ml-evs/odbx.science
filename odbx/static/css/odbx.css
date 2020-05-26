@@ -278,6 +278,11 @@ th {
     color: var(--odbx_pale_blue);
 }
 
+.cell_table_container {
+    overflow: scroll;
+    height: 16em
+}
+
 .cell_table th {
     color: var(--odbx_pale_blue);
 }

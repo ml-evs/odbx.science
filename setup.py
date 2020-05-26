@@ -6,10 +6,10 @@ module_dir = Path(__file__).resolve().parent
 with open("requirements.txt", "r") as f:
     reqs = f.readlines()
 
-dependency_links = [req for req in reqs if req.startswith('-e git://')]
+dependency_links = [req for req in reqs if req.startswith("-e git://")]
 for ind, req in enumerate(reqs):
     if req in dependency_links:
-        reqs[ind] = req.split('#egg=')[-1]
+        reqs[ind] = req.split("#egg=")[-1]
 
 setup(
     name="odbx",

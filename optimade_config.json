@@ -23,6 +23,7 @@
     },
     "provider_fields": {
         "structures": [
+            "lattice_abc",
             "hamiltonian",
             "thermodynamics",
             "dft_parameters",
@@ -36,7 +37,8 @@
             "tags",
             "cell_volume",
             "fractional_site_positions",
-            "calculator"
+            "calculator",
+            "calculation_date"
         ]
     }
 }

@@ -1,7 +1,10 @@
 import datetime
 from pydantic import BaseModel, Field, conint, validator
 from typing import List, Optional, Tuple, Union
-from optimade.models import StructureResourceAttributes
+from optimade.models import (
+    StructureResource,
+    StructureResourceAttributes,
+)
 from odbx.models.dft import MatadorThermodynamics, MatadorHamiltonian, MatadorCalculator
 from odbx.models.misc import MatadorPerson
 from odbx.models.utils import check_shape
@@ -25,20 +28,20 @@ class MatadorSpaceGroup(BaseModel):
     )
 
     number: Optional[conint(gt=0, lt=231)] = Field(
-        None, description="""The space group number from 1-230."""
+        ..., description="""The space group number from 1-230."""
     )
 
 
 class MatadorStructureResourceAttributes(StructureResourceAttributes):
     """ Extends the OPTIMADE spec for matador-specific keys. """
 
-    lattice_abc: List[List[float]] = Field(
+    lattice_abc: Tuple[Vector3D, Vector3D] = Field(
         ...,
         description="""The lattice parameters of the structure, in Angstrom and degrees.""",
     )
 
     fractional_site_positions: List[Vector3D] = Field(
-        ..., description="""Fractional positions."""
+        ..., description="""A list of the fractional positions of sites in the structure."""
     )
 
     cell_volume: float = Field(
@@ -48,7 +51,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
 
     dft_parameters: MatadorHamiltonian = Field(
         ...,
-        description="""The ers/Hamiltonian used in the relaxation of this structure.""",
+        description="""The parameters/Hamiltonian used in the relaxation of this structure.""",
     )
 
     thermodynamics: MatadorThermodynamics = Field(
@@ -72,11 +75,11 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
         ..., description="""The computed stress on the structure (Tr(p)/3)."""
     )
 
-    stress_tensor: Optional[List[List[float]]] = Field(
+    stress_tensor: Tuple[Vector3D, Vector3D, Vector3D] = Field(
         None, description="""The computed stress tensor on the structure."""
     )
 
-    forces: Optional[List[List[float]]] = Field(
+    forces: Optional[List[Vector3D]] = Field(
         None, description="""The forces on each atom in the structure, in eV/A. """
     )
 
@@ -89,7 +92,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
         None, description="""List of free text tags associated with the structure.""",
     )
 
-    date: Optional[datetime.datetime] = Field(
+    calculation_date: Optional[datetime.datetime] = Field(
         None, description="""Date on which calculation was performed."""
     )
 
@@ -100,3 +103,7 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     @validator("forces", whole=True)
     def check_forces(cls, v, values):
         check_shape(v, (values.get("nsites"), 3), "forces")
+
+
+class MatadorStructureResource(StructureResource):
+    attributes: MatadorStructureResourceAttributes

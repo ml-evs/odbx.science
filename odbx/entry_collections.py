@@ -15,7 +15,9 @@ class OdbxMongoCollection(MongoCollection):
 
     def __init__(self, indexes=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.collection.create_indexes(indexes)
+
+        if CONFIG.use_real_mongo:
+            self.collection.create_indexes(indexes)
 
     def find(self, *args):
         try:

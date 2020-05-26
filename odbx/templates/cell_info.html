@@ -1,3 +1,4 @@
+<div class="cell_table_container">
 <table class="cell_table">    
     <tr>
         <th> Lattice vectors (Å) </th>
@@ -6,7 +7,7 @@
         <td> 
             {% for vec in structure_info['data']['attributes']['lattice_vectors'] %}
                 {% for elem in vec %}
-                {{ "{:+4.3f}".format(elem).replace('+', '&nbsp;') | safe}}
+                {{ "{:>+5.2f}".format(elem).replace('+', '&nbsp;') | safe}}
                 {% endfor %}
                 </br>
                 {% endfor %}
@@ -27,3 +28,4 @@
         </td>
     </tr>
 </table>
+</div>

@@ -25,7 +25,7 @@ if CONFIG.debug:  # pragma: no cover
 
 
 app = FastAPI(
-    title=ABOUT["title"], 
+    title=ABOUT["title"],
     description=ABOUT["about"],
     version=__api_version__,
     docs_url=f"{BASE_URL_PREFIXES['major']}/extensions/docs",

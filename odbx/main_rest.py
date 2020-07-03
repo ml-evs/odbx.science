@@ -11,7 +11,15 @@ import optimade.server.exception_handlers as exc_handlers
 from optimade.server.config import CONFIG
 from optimade.server.entry_collections import MongoCollection
 from optimade.server.middleware import EnsureQueryParamIntegrity
-from optimade.server.routers import info, links, references, structures, landing, versions
+from optimade.server.routers import (
+    info,
+    links,
+    references,
+    structures,
+    landing,
+    versions,
+)
+
 # from optimade.server.schemas import ENTRY_SCHEMAS
 from optimade.server.routers.utils import BASE_URL_PREFIXES
 

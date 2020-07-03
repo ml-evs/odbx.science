@@ -1,0 +1,21 @@
+{
+    "debug": false,
+    "use_real_mongo": false,
+    "links_collection": "links",
+    "index_links_path": "./odbx_index_links.json",
+    "page_limit": 10,
+    "default_db": "odbx",
+    "base_url": "https://optimade-index.odbx.science",
+    "implementation": {
+        "name": "optimade-python-tools (configured for odbx.science)",
+        "source_url": "https://github.com/ml-evs/odbx.science",
+        "maintainer": {"email": "web@odbx.science"},
+        "version": "0.1"
+    },
+    "provider": {
+        "name": "Open Database of Xtals",
+        "description": "The Open Database of Xtals is run by the group of Dr Andrew Morris at the universities of Birmingham and Cambridge and is constructed using the matador library.",
+        "prefix": "odbx",
+        "homepage": "https://odbx.science"
+    }
+}

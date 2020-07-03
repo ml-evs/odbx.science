@@ -1,6 +1,12 @@
 #!/bin/bash
 mkdir -p logs
 mkdir -p /tmp
+
+touch logs/odbx_access.log 
+touch logs/odbx_error.log
+
+tail -f -n 20 logs/odbx_access.log logs/odbx_error.log &
+
 gunicorn \
     -w 2 \
     -k uvicorn.workers.UvicornWorker \
@@ -8,6 +14,5 @@ gunicorn \
     --access-logfile logs/odbx_access.log \
     --capture-output \
     --access-logformat "%(t)s: %(h)s %(l)s %(u)s %(r)s %(s)s %(b)s %(f)s %(a)s" \
-    -b unix:/tmp/gunicorn.sock odbx.main:app &
+    -b unix:/tmp/gunicorn.sock odbx.main_html_only:app 
 
-tail -f -n 20 logs/odbx_access.log logs/odbx_error.log

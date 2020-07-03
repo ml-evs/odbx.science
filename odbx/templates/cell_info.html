@@ -1,10 +1,10 @@
 <div class="cell_table_container">
-<table class="cell_table">    
+<table class="cell_table">
     <tr>
         <th> Lattice vectors (Å) </th>
     </tr>
     <tr>
-        <td> 
+        <td>
             {% for vec in structure_info['data']['attributes']['lattice_vectors'] %}
                 {% for elem in vec %}
                 {{ "{:>+5.2f}".format(elem).replace('+', '&nbsp;') | safe}}
@@ -17,7 +17,7 @@
         <th> Cell contents (fractional) </th>
     </tr>
     <tr>
-        <td> 
+        <td>
             {% for atom in structure_info['data']['attributes']['species_at_sites'] %}
                 {{ "{:3}".format(atom)}}
                 {% for elem in structure_info['data']['attributes']['_odbx_fractional_site_positions'][loop.index-1] %}

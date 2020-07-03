@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  nginx: 
+  nginx:
     restart: always
     build:
       context: .
@@ -19,7 +19,7 @@ services:
       - ./certbot/www:/var/www/certbot
 
   odbx:
-    restart: always 
+    restart: always
     build:
       context: .
       dockerfile: .docker/odbx_dockerfile
@@ -32,9 +32,9 @@ services:
       - sockets:/tmp/
       - ./odbx/static:/app/static/
       - ./logs:/app/logs/
-  
+
   odbx_rest:
-    restart: always 
+    restart: always
     build:
       context: .
       dockerfile: .docker/odbx_rest_dockerfile

@@ -24,7 +24,7 @@ jobs:
         domain: optimade.odbx.science
         path: /
         all versioned paths: True
-  
+
   lint:
     name: Lint
     runs-on: ubuntu-latest

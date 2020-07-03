@@ -14,4 +14,3 @@ gunicorn \
     --access-logfile logs/odbx_index_access.log \
     --access-logformat "%(t)s: %(h)s %(l)s %(u)s %(r)s %(s)s %(b)s %(f)s %(a)s" \
     -b unix:/tmp/gunicorn_index.sock odbx.main_index:app
-

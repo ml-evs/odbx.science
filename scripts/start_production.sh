@@ -2,7 +2,7 @@
 mkdir -p logs
 mkdir -p /tmp
 
-touch logs/odbx_access.log 
+touch logs/odbx_access.log
 touch logs/odbx_error.log
 
 tail -f -n 20 logs/odbx_access.log logs/odbx_error.log &
@@ -14,5 +14,4 @@ gunicorn \
     --access-logfile logs/odbx_access.log \
     --capture-output \
     --access-logformat "%(t)s: %(h)s %(l)s %(u)s %(r)s %(s)s %(b)s %(f)s %(a)s" \
-    -b unix:/tmp/gunicorn.sock odbx.main_html_only:app 
-
+    -b unix:/tmp/gunicorn.sock odbx.main_html_only:app

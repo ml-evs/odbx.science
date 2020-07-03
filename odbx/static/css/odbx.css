@@ -15,7 +15,7 @@
     --odbx_min_width: 500px;
 }
 
-body {    
+body {
     background-color: var(--odbx_dark_grey);
     padding: 0;
     margin: 0;
@@ -168,7 +168,7 @@ td {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-    
+
 .structure_header {
     width: 35%;
     text-align: center;
@@ -290,7 +290,7 @@ th {
 .energy_table th {
     color: var(--odbx_pale_blue);
 }
-    
+
 .dft_table th {
     color: var(--odbx_pale_blue);
 }
@@ -370,7 +370,7 @@ footer a {
   align: center;
   text-align: center;
   margin-top: 20px;
-  margin-left:auto; 
+  margin-left:auto;
   margin-right:auto;
   width:85%;
 }
@@ -393,16 +393,16 @@ footer a {
 }
 
 .export_button {
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
   margin-top: 1px;
   align: center;
   text-align: center;
 }
 
 .export_button a{
-  font-size: 1.2em; 
+  font-size: 1.2em;
   padding: 10px;
   padding-bottom: 5px;
   padding-top: 5px;

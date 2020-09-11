@@ -17,7 +17,7 @@ jobs:
         domain: optimade.odbx.science
         path: /
         all versioned paths: True
-        validator version: 0.9.8
+        validator version: "0.9.8"
         skip optional: True
     - name: Validate HTTP
       uses: Materials-Consortia/optimade-validator-action@v1
@@ -26,5 +26,5 @@ jobs:
         domain: optimade.odbx.science
         path: /
         all versioned paths: True
-        validator version: 0.9.8
+        validator version: "0.9.8"
         skip optional: True

@@ -1,0 +1,17 @@
+FROM python:3.7
+
+WORKDIR /app
+
+# copy repo contents and install deps
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+COPY odbx ./odbx
+
+ENV PYTHONPATH "/app/"
+
+# copy configs and startup scripts
+COPY optimade_test_config.json README.md ./
+COPY scripts/start_production_rest_test.sh ./run.sh
+
+# run web server
+CMD ["/app/run.sh"]

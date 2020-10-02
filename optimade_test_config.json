@@ -1,0 +1,43 @@
+{
+    "debug": false,
+    "use_real_mongo": true,
+    "mongo_database": "crystals",
+    "mongo_uri": "/tmp/mongodb-27017.sock",
+    "links_collection": "links_test",
+    "references_collection": "references_test",
+    "structures_collection": "structures_test",
+    "default_db": "odbx",
+    "base_url": "https://optimade-test.odbx.science",
+    "implementation": {
+        "name": "optimade-python-tools (modified for odbx.science)",
+        "source_url": "https://github.com/ml-evs/odbx.science",
+        "maintainer": {"email": "web@odbx.science"},
+        "version": "0.1"
+    },
+    "provider": {
+        "name": "Open Database of Xtals",
+        "description": "The Open Database of Xtals is run by the group of Dr Andrew Morris at the universities of Birmingham and Cambridge and is constructed using the matador library.",
+        "prefix": "odbx",
+        "homepage": "https://odbx.science"
+    },
+    "provider_fields": {
+        "structures": [
+            "lattice_abc",
+            "hamiltonian",
+            "thermodynamics",
+            "dft_parameters",
+            "formation_energy",
+            "space_group",
+            "submitter",
+            "stress",
+            "stress_tensor",
+            "forces",
+            "max_force_on_atom",
+            "tags",
+            "cell_volume",
+            "fractional_site_positions",
+            "calculator",
+            "calculation_date"
+        ]
+    }
+}

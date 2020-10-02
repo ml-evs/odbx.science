@@ -14,7 +14,12 @@ from optimade import __api_version__, __version__
 import optimade.server.exception_handlers as exc_handlers
 
 from optimade.server.config import CONFIG
-from optimade.server.middleware import EnsureQueryParamIntegrity
+from optimade.server.middleware import (
+    EnsureQueryParamIntegrity,
+    CheckWronglyVersionedBaseUrls,
+    HandleApiHint,
+    AddWarnings,
+)
 from optimade.server.routers import index_info, links, versions
 from optimade.server.routers.utils import BASE_URL_PREFIXES
 from .routers import ABOUT
@@ -59,6 +64,9 @@ if not CONFIG.use_real_mongo and CONFIG.index_links_path.exists():
 # Add various middleware
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
 app.add_middleware(EnsureQueryParamIntegrity)
+app.add_middleware(CheckWronglyVersionedBaseUrls)
+app.add_middleware(HandleApiHint)
+app.add_middleware(AddWarnings)
 
 
 # Add various exception handlers

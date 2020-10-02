@@ -10,7 +10,12 @@ from optimade import __api_version__
 import optimade.server.exception_handlers as exc_handlers
 from optimade.server.config import CONFIG
 from optimade.server.entry_collections import MongoCollection
-from optimade.server.middleware import EnsureQueryParamIntegrity
+from optimade.server.middleware import (
+    EnsureQueryParamIntegrity,
+    CheckWronglyVersionedBaseUrls,
+    HandleApiHint,
+    AddWarnings,
+)
 from optimade.server.routers import (
     info,
     links,
@@ -55,6 +60,9 @@ if not CONFIG.use_real_mongo:
 # Add various middleware
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
 app.add_middleware(EnsureQueryParamIntegrity)
+app.add_middleware(CheckWronglyVersionedBaseUrls)
+app.add_middleware(HandleApiHint)
+app.add_middleware(AddWarnings)
 
 # Add various exception handlers
 app.add_exception_handler(StarletteHTTPException, exc_handlers.http_exception_handler)

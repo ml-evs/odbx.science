@@ -20,7 +20,7 @@ class MatadorSpaceGroup(BaseModel):
 
     symbol: str = Field(
         ...,
-        description="""The International (HM) space group symbol, as reported by spglib.""",
+        description="""The International Hermann-Mauguin (HM) space group symbol, as reported by spglib.""",
     )
 
     spglib_tolerance: float = Field(
@@ -28,7 +28,7 @@ class MatadorSpaceGroup(BaseModel):
     )
 
     number: Optional[conint(gt=0, lt=231)] = Field(
-        ..., description="""The space group number from 1-230."""
+        None, description="""The ITA space group number from 1-230."""
     )
 
 

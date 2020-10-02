@@ -182,6 +182,7 @@ class MatadorOptimadeTransformer:
             doc.stoichiometry, elements=[elem[0] for elem in sorted_stoich]
         )
         structure_attributes["dimension_types"] = [1, 1, 1]
+        structure_attributes["nperiodic_dimensions"] = 3
         structure_attributes["lattice_vectors"] = doc.lattice_cart
         structure_attributes["lattice_abc"] = doc.lattice_abc
         structure_attributes["cell_volume"] = cart2volume(doc.lattice_cart)

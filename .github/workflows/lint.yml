@@ -1,4 +1,4 @@
-name: Remote validator
+name: Static analysis
 
 on:
   push:

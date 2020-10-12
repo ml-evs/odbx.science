@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Validate HTTPS
-      uses: Materials-Consortia/optimade-validator-action@ba08d06
+      uses: Materials-Consortia/optimade-validator-action@v2
       with:
         protocol: https
         domain: optimade.odbx.science
@@ -19,4 +19,4 @@ jobs:
         all versioned paths: true
         validator version: latest
         skip optional: true
-        verbosity: 4
+        verbosity: 1

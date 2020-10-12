@@ -19,4 +19,4 @@ jobs:
         all versioned paths: true
         validator version: latest
         skip optional: true
-        verbosity: 4
+        verbosity: 1

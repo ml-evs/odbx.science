@@ -9,7 +9,7 @@ updates:
   labels:
   - dependency_updates
 - package-ecosystem: docker
-  directory: "/"
+  directory: "/.docker"
   schedule:
     interval: weekly
   open-pull-requests-limit: 50

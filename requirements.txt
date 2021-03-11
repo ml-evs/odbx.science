@@ -1,5 +1,5 @@
-optimade[server]==0.13.1
-uvicorn[standard]==0.12.2
+optimade[server]~=0.13
+uvicorn[standard]
 matador-db>=0.9
 gunicorn>=20.0.4
 aiofiles>=0.4.0

@@ -8,3 +8,11 @@ updates:
   target-branch: master
   labels:
   - dependency_updates
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 50
+  target-branch: master
+  labels:
+  - dependency_updates

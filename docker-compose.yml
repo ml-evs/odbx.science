@@ -6,7 +6,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/nginx_dockerfile
+      Dockerfile: .docker/nginx_Dockerfile
     ports:
       - '8080:80'
       - '443:443'
@@ -22,7 +22,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/odbx_dockerfile
+      Dockerfile: .docker/odbx_Dockerfile
     environment:
       MAIN: main
       OPTIMADE_CONFIG_FILE: /app/optimade_config.json
@@ -37,7 +37,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/odbx_rest_dockerfile
+      Dockerfile: .docker/odbx_rest_Dockerfile
     environment:
       MAIN: main
       OPTIMADE_CONFIG_FILE: /app/optimade_config.json
@@ -51,7 +51,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/odbx_rest_test_dockerfile
+      Dockerfile: .docker/odbx_rest_test_Dockerfile
     environment:
       MAIN: main
       OPTIMADE_CONFIG_FILE: /app/optimade_test_config.json
@@ -66,7 +66,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/odbx_index_dockerfile
+      Dockerfile: .docker/odbx_index_Dockerfile
     environment:
       OPTIMADE_CONFIG_FILE: /app/optimade_index_config.json
     volumes:
@@ -77,7 +77,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: .docker/mongo_dockerfile
+      Dockerfile: .docker/mongo_Dockerfile
     command: ["mongod", "-f", "/etc/mongod.conf"]
     volumes:
       - sockets:/tmp/

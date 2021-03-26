@@ -1,5 +1,5 @@
 import pymongo
-from optimade.server.entry_collections import MongoCollection
+from optimade.server.entry_collections.mongo import MongoCollection
 from optimade.server.config import CONFIG
 
 CLIENT = pymongo.MongoClient(
@@ -15,9 +15,7 @@ class OdbxMongoCollection(MongoCollection):
 
     def __init__(self, indexes=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        if CONFIG.use_real_mongo:
-            self.collection.create_indexes(indexes)
+        self.collection.create_indexes(indexes)
 
     def find(self, *args):
         try:

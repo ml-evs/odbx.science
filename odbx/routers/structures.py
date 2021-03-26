@@ -28,7 +28,8 @@ router = APIRouter()
 
 
 structures_coll = OdbxMongoCollection(
-    collection=CLIENT[CONFIG.mongo_database][CONFIG.structures_collection],
+    name=CONFIG.structures_collection,
+    database=CONFIG.mongo_database,
     resource_cls=StructureResource,
     resource_mapper=StructureMapper,
     indexes=[IndexModel("id", unique=True)],

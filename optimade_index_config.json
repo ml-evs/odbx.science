@@ -1,6 +1,7 @@
 {
     "debug": false,
-    "use_real_mongo": false,
+    "insert_test_data": false,
+    "database_backend": "mongodb",
     "links_collection": "links",
     "index_links_path": "./odbx_index_links.json",
     "page_limit": 10,

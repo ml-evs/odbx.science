@@ -7,9 +7,14 @@ from fastapi.exceptions import RequestValidationError, StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from optimade import __api_version__
+from optimade.server.schemas import ENTRY_INFO_SCHEMAS
+
+from .models.structure import MatadorStructureResource
+
+ENTRY_INFO_SCHEMAS["structures"] = MatadorStructureResource
+
 import optimade.server.exception_handlers as exc_handlers
 from optimade.server.config import CONFIG
-from optimade.server.entry_collections import MongoCollection
 from optimade.server.middleware import (
     EnsureQueryParamIntegrity,
     CheckWronglyVersionedBaseUrls,
@@ -25,10 +30,8 @@ from optimade.server.routers import (
     versions,
 )
 
-# from optimade.server.schemas import ENTRY_SCHEMAS
 from optimade.server.routers.utils import BASE_URL_PREFIXES
 
-from .models.structure import MatadorStructureResource
 from .routers import ABOUT
 
 
@@ -41,21 +44,6 @@ app = FastAPI(
     openapi_url=f"{BASE_URL_PREFIXES['major']}/extensions/openapi.json",
 )
 
-if not CONFIG.use_real_mongo:
-    import optimade.server.data as data
-    from optimade.server.routers import ENTRY_COLLECTIONS
-
-    def load_entries(endpoint_name: str, endpoint_collection: MongoCollection):
-        print(f"loading test {endpoint_name}...")
-
-        endpoint_collection.collection.insert_many(getattr(data, endpoint_name, []))
-        print(f"done inserting test {endpoint_name}...")
-
-    for name, collection in ENTRY_COLLECTIONS.items():
-        load_entries(name, collection)
-
-# Set the info endpoint to use MatadorStructureResource
-# ENTRY_SCHEMAS.structure_model = MatadorStructureResource
 
 # Add various middleware
 app.add_middleware(CORSMiddleware, allow_origins=["*"])

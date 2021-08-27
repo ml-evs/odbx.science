@@ -3,6 +3,8 @@ name: Remote validator
 on:
   schedule:
      - cron:  '0 13 * * *'
+  push:
+     - master
 
 jobs:
   validate:

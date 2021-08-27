@@ -1,5 +1,6 @@
 from pathlib import Path
 from setuptools import setup
+from odbx import __version__
 
 module_dir = Path(__file__).resolve().parent
 
@@ -13,7 +14,7 @@ for ind, req in enumerate(reqs):
 
 setup(
     name="odbx",
-    version="0.4.0",
+    version=__version__,
     url="https://github.com/ml-evs/odbx.science",
     license="MIT",
     author="Matthew Evans",

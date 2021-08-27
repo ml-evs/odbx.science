@@ -3,7 +3,7 @@
     "insert_test_data": false,
     "database_backend": "mongodb",
     "mongo_database": "crystals",
-    "mongo_uri": "/tmp/mongodb-27017.sock",
+    "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27017.sock",
     "links_collection": "links_test",
     "references_collection": "references_test",
     "structures_collection": "structures_test",
@@ -13,7 +13,7 @@
         "name": "optimade-python-tools (modified for odbx.science)",
         "source_url": "https://github.com/ml-evs/odbx.science",
         "maintainer": {"email": "web@odbx.science"},
-        "version": "0.1"
+        "version": "0.1.0"
     },
     "provider": {
         "name": "Open Database of Xtals",

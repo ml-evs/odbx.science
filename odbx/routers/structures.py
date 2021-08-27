@@ -21,6 +21,7 @@ from matador.utils.chem_utils import get_stoich_from_formula
 
 from ..mappers import StructureMapper
 from ..templates import TEMPLATES
+from ..models.structure import MatadorStructureResource
 from ..utils import optimade_to_basic_cif
 from ..entry_collections import CLIENT, OdbxMongoCollection
 
@@ -30,7 +31,7 @@ router = APIRouter()
 structures_coll = OdbxMongoCollection(
     name=CONFIG.structures_collection,
     database=CONFIG.mongo_database,
-    resource_cls=StructureResource,
+    resource_cls=MatadorStructureResource,
     resource_mapper=StructureMapper,
     indexes=[IndexModel("id", unique=True)],
 )

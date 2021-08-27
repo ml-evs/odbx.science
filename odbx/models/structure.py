@@ -5,6 +5,7 @@ from optimade.models import (
     StructureResource,
     StructureResourceAttributes,
 )
+from optimade.server.config import CONFIG
 from odbx.models.dft import MatadorThermodynamics, MatadorHamiltonian, MatadorCalculator
 from odbx.models.misc import MatadorPerson
 from odbx.models.utils import check_shape
@@ -13,6 +14,13 @@ __all__ = ["MatadorSpaceGroup", "MatadorStructureResourceAttributes"]
 
 
 Vector3D = Tuple[Union[float, None], Union[float, None], Union[float, None]]
+
+
+def prefix_provider(name: str) -> str:
+    if name in CONFIG.provider_fields.get("structures", []):
+        return f"_{CONFIG.provider.prefix}_{name}"
+
+    return name
 
 
 class MatadorSpaceGroup(BaseModel):
@@ -104,6 +112,9 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     @validator("forces", whole=True)
     def check_forces(cls, v, values):
         check_shape(v, (values.get("nsites"), 3), "forces")
+
+    class Config:
+        alias_generator = prefix_provider
 
 
 class MatadorStructureResource(StructureResource):

@@ -11,7 +11,7 @@ from optimade.server.schemas import ENTRY_INFO_SCHEMAS
 
 from .models.structure import MatadorStructureResource
 
-ENTRY_INFO_SCHEMAS["structures"] = MatadorStructureResource
+ENTRY_INFO_SCHEMAS["structures"] = MatadorStructureResource.schema
 
 import optimade.server.exception_handlers as exc_handlers
 from optimade.server.config import CONFIG

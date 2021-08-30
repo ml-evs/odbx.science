@@ -19,7 +19,6 @@ jobs:
         domain: optimade.odbx.science
         path: /
         all versioned paths: true
-        validator version: v0.15.5
         skip optional: true
         verbosity: 1
         minimal: true

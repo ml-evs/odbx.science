@@ -3,6 +3,7 @@
 [![OPTIMADE](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Materials-Consortia/optimade-python-tools/v0.13.3/optimade-version.json)](https://github.com/Materials-Consortia/OPTIMADE/)
 [![Build Status](https://img.shields.io/github/workflow/status/ml-evs/odbx.science/Remote%20validator?logo=github)](https://github.com/ml-evs/odbx.science/actions?query=branch%3Amaster+)
 [![Website](https://img.shields.io/website?down_color=lightgrey&down_message=down&label=OPTIMADE%20API&logo=json&up_color=green&up_message=up&url=https%3A%2F%2Foptimade.odbx.science)](https://optimade.odbx.science/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fml-evs%2Fodbx.science.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fml-evs%2Fodbx.science?ref=badge_shield)
 
 This repo contains some notes about the server running at odbx.science. 
 
@@ -34,3 +35,7 @@ The site now runs as 5 coupled docker containers, with shared `/tmp/` volume, de
 - The domain `odbx.science` was purchased until 2023 from Namecheap, which currently redirects to the public IP of the VM.
 - All `*@odbx.science` email addresses currently redirect to my personal account.
 - The domain came with a 1 year SSL certificate (~£4 year after). Since 26/04/20 certbot has been used to get free SSL from Let's Encrypt. This should renew automatically (see notes about `certbot`).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fml-evs%2Fodbx.science.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fml-evs%2Fodbx.science?ref=badge_large)

@@ -13,7 +13,8 @@
         "name": "optimade-python-tools (modified for odbx.science)",
         "source_url": "https://github.com/ml-evs/odbx.science",
         "maintainer": {"email": "web@odbx.science"},
-        "version": "0.1.0"
+        "issue_tracker": "https://github.com/ml-evs/odbx.science/issues",
+        "version": "0.1"
     },
     "provider": {
         "name": "Open Database of Xtals",
@@ -27,7 +28,6 @@
             "hamiltonian",
             "thermodynamics",
             "dft_parameters",
-            "formation_energy",
             "space_group",
             "submitter",
             "stress",

@@ -16,14 +16,19 @@ from optimade.models import (
 from optimade.server.config import CONFIG
 from optimade.server.query_params import SingleEntryQueryParams, EntryListingQueryParams
 from optimade.server.routers.utils import get_single_entry, get_entries
+from optimade.server.mappers import StructureMapper
 
 from matador.utils.chem_utils import get_stoich_from_formula
 
-from ..mappers import StructureMapper
 from ..templates import TEMPLATES
 from ..models.structure import MatadorStructureResource
 from ..utils import optimade_to_basic_cif
 from ..entry_collections import CLIENT, OdbxMongoCollection
+
+
+class MatadorStructureMapper(StructureMapper):
+    ENTRY_RESOURCE_CLASS = MatadorStructureResource
+
 
 router = APIRouter()
 
@@ -32,7 +37,7 @@ structures_coll = OdbxMongoCollection(
     name=CONFIG.structures_collection,
     database=CONFIG.mongo_database,
     resource_cls=MatadorStructureResource,
-    resource_mapper=StructureMapper,
+    resource_mapper=MatadorStructureMapper,
     indexes=[IndexModel("id", unique=True)],
 )
 

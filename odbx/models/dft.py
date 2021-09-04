@@ -91,8 +91,8 @@ class MatadorHamiltonian(BaseModel):
         description="""Enum to store the spin treatment for the calculation, where the allowed values reflect the CASTEP keywords.""",
     )
 
-    external_pressure: List[List[float]] = Field(
-        ..., description="""The external pressure tensor applied during relaxation."""
+    external_pressure: Optional[List[List[float]]] = Field(
+        None, description="""The external pressure tensor applied during relaxation."""
     )
 
     kpoint_spacing: float = Field(
@@ -111,7 +111,9 @@ class MatadorHamiltonian(BaseModel):
 
     @validator("external_pressure", whole=True)
     def check_pressure(cls, v):
-        check_shape(v, (3, 3), "external_pressure")
+        if v is not None:
+            check_shape(v, (3, 3), "external_pressure")
+        return v
 
 
 class MatadorCalculator(BaseModel):

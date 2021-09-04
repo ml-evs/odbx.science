@@ -11,6 +11,10 @@ from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from optimade import __api_version__
+from optimade.server.schemas import ENTRY_INFO_SCHEMAS
+from .models.structure import MatadorStructureResource
+
+ENTRY_INFO_SCHEMAS["structures"] = MatadorStructureResource.schema
 
 import optimade.server.exception_handlers as exc_handlers
 

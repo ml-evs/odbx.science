@@ -107,11 +107,15 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
 
     @validator("stress_tensor", whole=True)
     def check_stress(cls, v):
-        check_shape(v, (3, 3), "stress_tensor")
+        if v is not None:
+            check_shape(v, (3, 3), "stress_tensor")
+        return v
 
     @validator("forces", whole=True)
     def check_forces(cls, v, values):
-        check_shape(v, (values.get("nsites"), 3), "forces")
+        if v is not None:
+            check_shape(v, (values.get("nsites"), 3), "forces")
+        return v
 
     class Config:
         alias_generator = prefix_provider

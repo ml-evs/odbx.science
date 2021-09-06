@@ -6,6 +6,7 @@
     "name": "odbx",
     "description": "The Open Database of Xtals is run by the group of Dr Andrew Morris at the universities of Birmingham and Cambridge and is constructed using the matador library.",
     "base_url": "https://optimade.odbx.science",
-    "homepage": "https://odbx.science"
+    "homepage": "https://odbx.science",
+    "aggregate": "ok"
   }
 ]

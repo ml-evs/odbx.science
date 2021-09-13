@@ -6,7 +6,9 @@
 {% block content %}
 
 <div class="content">
-    <h2 style="text-align: center; padding-bottom: 500px;">{{ "Structure <span class=\"odbx_id_font\">{}</span> not found.".format(entry_id) | safe }}</h2>
+    <h2 style="text-align: center; padding-bottom: 500px;">
+        Structure <span class=\"odbx_id_font\">{{ entry_id }}</span> not found."
+    </h2>
 </div>
 
 {% endblock content %}

@@ -17,6 +17,8 @@ services:
       - ~/keys:/keys/
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    networks:
+      - nginx
 
   odbx:
     restart: always
@@ -32,6 +34,8 @@ services:
       - sockets:/tmp/
       - ./odbx/static:/app/static/
       - ./logs:/app/logs/
+    networks:
+      - nginx
 
   odbx_rest:
     restart: always
@@ -46,6 +50,8 @@ services:
     volumes:
       - sockets:/tmp/
       - ./logs:/app/logs/
+    networks:
+      - nginx
 
   odbx_rest_test:
     restart: always
@@ -61,6 +67,8 @@ services:
       - sockets:/tmp/
       - ./logs:/app/logs/
       - /data/structure_repository/:/data/
+    networks:
+      - nginx
 
   odbx_index:
     restart: always
@@ -72,6 +80,8 @@ services:
     volumes:
       - sockets:/tmp/
       - ./logs:/app/logs/
+    networks:
+      - nginx
 
   mongo:
     restart: always
@@ -83,6 +93,10 @@ services:
       - sockets:/tmp/
       - ./logs:/var/logs/mongod/
       - /data/db/mongo:/data/db
+    ports:
+      - "27019:27017"
+    networks:
+      - nginx
 
   certbot:
     image: certbot/certbot
@@ -90,6 +104,12 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 24h & wait $${!}; done;'"
+    networks:
+      - nginx
 
 volumes:
     sockets:
+
+networks:
+    nginx:
+        external: true

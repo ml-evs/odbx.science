@@ -3,7 +3,7 @@
     "insert_test_data": false,
     "database_backend": "mongodb",
     "mongo_database": "crystals",
-    "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27017.sock",
+    "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27018.sock",
     "links_collection": "links_test",
     "references_collection": "references_test",
     "structures_collection": "structures_test",

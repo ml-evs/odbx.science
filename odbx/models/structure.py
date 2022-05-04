@@ -24,7 +24,7 @@ def prefix_provider(name: str) -> str:
 
 
 class MatadorSpaceGroup(BaseModel):
-    """ Container for an spglib calculated space group. """
+    """Container for an spglib calculated space group."""
 
     symbol: str = Field(
         ...,
@@ -41,7 +41,7 @@ class MatadorSpaceGroup(BaseModel):
 
 
 class MatadorStructureResourceAttributes(StructureResourceAttributes):
-    """ Extends the OPTIMADE spec for matador-specific keys. """
+    """Extends the OPTIMADE spec for matador-specific keys."""
 
     lattice_abc: Tuple[Vector3D, Vector3D] = Field(
         ...,
@@ -98,7 +98,8 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     )
 
     tags: Optional[List[str]] = Field(
-        None, description="""List of free text tags associated with the structure.""",
+        None,
+        description="""List of free text tags associated with the structure.""",
     )
 
     calculation_date: Optional[datetime.datetime] = Field(

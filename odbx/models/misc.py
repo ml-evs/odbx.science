@@ -6,7 +6,7 @@ __all__ = ["MatadorPerson"]
 
 
 class MatadorPerson(Person):
-    """ Container for a person. """
+    """Container for a person."""
 
     email: EmailStr = Field(
         ...,

@@ -167,4 +167,8 @@ def get_single_cif(
         f"{line}\n" if ind != num_lines - 1 else line
         for ind, line in enumerate(cif_list)
     )
-    return StreamingResponse(cif_generator, media_type="text/plain", headers=headers,)
+    return StreamingResponse(
+        cif_generator,
+        media_type="text/plain",
+        headers=headers,
+    )

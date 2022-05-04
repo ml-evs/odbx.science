@@ -37,7 +37,7 @@ class MatadorPseudopotentialType(str, Enum):
 
 
 class MatadorPseudopotential(BaseModel):
-    """ Container for psuedopotentials. """
+    """Container for psuedopotentials."""
 
     identifier: str = Field(
         ...,
@@ -70,7 +70,7 @@ class MatadorPseudopotential(BaseModel):
 
 
 class MatadorHamiltonian(BaseModel):
-    """ Container for any parameters that alter the Hamiltonian under which the structure was relaxed, or convergence parameters that alter the final results. """
+    """Container for any parameters that alter the Hamiltonian under which the structure was relaxed, or convergence parameters that alter the final results."""
 
     cut_off_energy: float = Field(
         ..., description="""The cutoff energy used in the calcution, in eV."""

@@ -30,7 +30,9 @@ import tqdm
 
 class MatadorOptimadeTransformer:
     def __init__(
-        self, structures: list = None, references: list = None,
+        self,
+        structures: list = None,
+        references: list = None,
     ):
 
         self.wlines = WORDS
@@ -122,7 +124,7 @@ class MatadorOptimadeTransformer:
 
     @classmethod
     def construct_submitter(self, doc: Crystal) -> Union[MatadorPerson, None]:
-        """ Construct a MatadorPerson object, assuming the user field contains a CRSID. """
+        """Construct a MatadorPerson object, assuming the user field contains a CRSID."""
         return None
         # if "user" in doc._data:
         # user = doc._data["user"]
@@ -130,7 +132,7 @@ class MatadorOptimadeTransformer:
 
     @classmethod
     def construct_calculator(self, doc: Crystal) -> Union[MatadorCalculator, None]:
-        """ Construct the container to store calculator info. """
+        """Construct the container to store calculator info."""
         if "castep_version" in doc._data:
             major = int(doc._data["castep_version"].split(".")[0])
             minor = float("".join(doc._data["castep_version"].split(".")[1:]))
@@ -153,7 +155,7 @@ class MatadorOptimadeTransformer:
 
     @classmethod
     def construct_spacegroup(self, doc: Crystal, tolerance=1e-3) -> MatadorSpaceGroup:
-        """ Generate the space group at the standardised tolerance. """
+        """Generate the space group at the standardised tolerance."""
         return MatadorSpaceGroup(
             symbol=doc.get_space_group(symprec=tolerance), spglib_tolerance=tolerance
         )
@@ -245,7 +247,7 @@ class MatadorOptimadeTransformer:
 
 
 def anonymous_element_generator():
-    """ Generator that yields the next symbol in the A, B, Aa, ... Az naming scheme. """
+    """Generator that yields the next symbol in the A, B, Aa, ... Az naming scheme."""
     from string import ascii_lowercase
     import itertools
 

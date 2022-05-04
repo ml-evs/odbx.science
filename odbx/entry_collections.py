@@ -8,7 +8,7 @@ CLIENT = pymongo.MongoClient(
 
 
 class OdbxMongoCollection(MongoCollection):
-    """ Wrap the default optimade collection to prevent Mongo errors from
+    """Wrap the default optimade collection to prevent Mongo errors from
     directly being displayed to user.
 
     """

@@ -2,7 +2,7 @@ from matador.utils.cell_utils import cart2abc, cart2frac
 
 
 def optimade_to_basic_cif(structure):
-    """ A simple CIF creator that is enough to trick ChemDoodle. """
+    """A simple CIF creator that is enough to trick ChemDoodle."""
 
     cif_string = ""
     lattice_abc = cart2abc(structure.attributes.lattice_vectors)

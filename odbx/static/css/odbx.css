@@ -157,7 +157,6 @@ td {
     margin-right: auto;
     flex-wrap: wrap;
     width: 100%;
-    margin: auto;
     flex-direction: row;
     justify-content: center;
 }

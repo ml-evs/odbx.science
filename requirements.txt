@@ -1,4 +1,4 @@
-optimade[server]~=0.17
+optimade[server]~=0.19
 uvicorn[standard]
 matador-db>=0.9
 gunicorn>=20.0.4

@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: .docker/nginx_Dockerfile
     ports:
-      - '8080:80'
+      - '80:80'
       - '443:443'
     volumes:
       - sockets:/tmp/

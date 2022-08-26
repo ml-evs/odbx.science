@@ -5,6 +5,7 @@ WORKDIR /app
 COPY .docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY .docker/nginx/nginx_ssl.conf /etc/nginx/nginx_ssl.conf
 COPY .docker/nginx/nginx_log.conf /etc/nginx/nginx_log.conf
+COPY .docker/nginx/nginx_certbot.conf /etc/nginx/nginx_certbot.conf
 COPY .docker/nginx/include /etc/nginx/include
 RUN rm -f /etc/nginx/conf.d/default.conf
 

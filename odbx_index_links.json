@@ -8,5 +8,15 @@
     "base_url": "https://optimade.odbx.science",
     "homepage": "https://odbx.science",
     "aggregate": "ok"
+  },
+  {
+    "type": "links",
+    "link_type": "child",
+    "id": "camd_tri",
+    "name": "CAMD TRI Dataset",
+    "description": "The CAMD dataset, hosted as an OPTIMADE API (https://doi.org/10.6084/m9.figshare.19601956.v1)",
+    "base_url": "https://optimade-camd.azurewebsites.net/",
+    "homepage": "https://doi.org/10.6084/m9.figshare.19601956.v1",
+    "aggregate": "ok"
   }
 ]

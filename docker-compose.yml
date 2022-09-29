@@ -44,6 +44,22 @@ services:
       dockerfile: .docker/odbx_rest_Dockerfile
     environment:
       MAIN: main
+      OPTIMADE_CONFIG_FILE: /app/optimade_misc_config.json
+    depends_on:
+      - mongo
+    volumes:
+      - sockets:/tmp/
+      - ./logs:/app/logs/
+    networks:
+      - nginx
+
+  odbx_rest_misc:
+    restart: always
+    build:
+      context: .
+      dockerfile: .docker/odbx_rest_misc_Dockerfile
+    environment:
+      MAIN: main
       OPTIMADE_CONFIG_FILE: /app/optimade_config.json
     depends_on:
       - mongo
@@ -52,6 +68,7 @@ services:
       - ./logs:/app/logs/
     networks:
       - nginx
+
 
   odbx_rest_test:
     restart: always
@@ -93,8 +110,6 @@ services:
       - sockets:/tmp/
       - ./logs:/var/logs/mongod/
       - /data/db/mongo:/data/db
-    ports:
-      - "27019:27017"
     networks:
       - nginx
 

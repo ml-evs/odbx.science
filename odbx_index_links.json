@@ -12,11 +12,11 @@
   {
     "type": "links",
     "link_type": "child",
-    "id": "camd_tri",
-    "name": "CAMD TRI Dataset",
-    "description": "The CAMD dataset, hosted as an OPTIMADE API (https://doi.org/10.6084/m9.figshare.19601956.v1)",
-    "base_url": "https://optimade-camd.azurewebsites.net/",
-    "homepage": "https://doi.org/10.6084/m9.figshare.19601956.v1",
+    "id": "odbx_misc",
+    "name": "Miscellaneous Materials Discovery Data",
+    "description": "Miscellaneous Materials Discovery Datasets, hosted as an OPTIMADE API (temporarily).",
+    "base_url": "https://optimade-misc.odbx.science",
+    "homepage": "https://github.com/ml-evs/optimade-misc-datasets",
     "aggregate": "ok"
   }
 ]

@@ -8,7 +8,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.2
+    - uses: actions/checkout@v3.3.0
 
     - name: Set up Python
       uses: actions/setup-python@v3.1.2
@@ -30,7 +30,7 @@ jobs:
     name: Pre-commit
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.2
+    - uses: actions/checkout@v3.3.0
     - name: Set up Python 3.7
       uses: actions/setup-python@v3.1.2
       with:

@@ -1,0 +1,3 @@
+[submodule "dcgat-optimade"]
+	path = dcgat-optimade
+	url = git@github.com:ml-evs/dcgat-optimade

@@ -1,0 +1,14 @@
+FROM python:3.9.6
+
+WORKDIR /app
+
+COPY ./dcgat-optimade /app
+
+# copy repo contents and install deps
+RUN pip install gunicorn
+RUN pip install -r /app/requirements.txt
+
+ENV PYTHONPATH "/app/optimade_dcgat"
+
+# run web server
+CMD ["/app/start_production.sh"]

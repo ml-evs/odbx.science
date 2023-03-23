@@ -1,0 +1,26 @@
+{
+    "debug": false,
+    "mongo_database": "dcgat_optimade",
+    "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27018.sock",
+    "database_backend": "mongodb",
+    "insert_test_data": false,
+    "base_url": "https://dcgat.odbx.science",
+    "implementation": {
+        "name": "OPTIMADE Python tools",
+        "source_url": "https://github.com/Materials-Consortia/optimade-python-tools",
+        "issue_tracker": "https://github.com/Materials-Consortia/optimade-python-tools/issues",
+        "maintainer": {"email": "dev@optimade.org"}
+    },
+    "provider": {
+        "name": "DCGAT",
+        "description": "",
+        "prefix": "dcgat",
+        "homepage": "https://tddft.org/bmg"
+    },
+    "provider_fields": {
+        "structures": [
+            "xc_functional",
+            "energy",
+        ]
+    },
+}

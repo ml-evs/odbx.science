@@ -1,3 +1,6 @@
 [submodule "dcgat-optimade"]
 	path = dcgat-optimade
 	url = git@github.com:ml-evs/dcgat-optimade
+[submodule "optimade-misc-datasets"]
+	path = optimade-misc-datasets
+	url = git@github.com:ml-evs/optimade-misc-datasets

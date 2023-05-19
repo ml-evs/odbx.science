@@ -4,7 +4,7 @@
     "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27018.sock",
     "database_backend": "mongodb",
     "insert_test_data": false,
-    "base_url": "https://dcgat.odbx.science",
+    "base_url": "https://alexandria.odbx.science",
     "implementation": {
         "name": "OPTIMADE Python tools",
         "source_url": "https://github.com/Materials-Consortia/optimade-python-tools",
@@ -12,9 +12,9 @@
         "maintainer": {"email": "dev@optimade.org"}
     },
     "provider": {
-        "name": "DCGAT",
-        "description": "",
-        "prefix": "dcgat",
+        "name": "Alexandria",
+        "description": "A collection of databases from the group of Prof Miguel A. L. Marques at Ruhr University Bochum.",
+        "prefix": "alexandria",
         "homepage": "https://tddft.org/bmg"
     },
     "provider_fields": {

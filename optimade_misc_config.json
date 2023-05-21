@@ -24,8 +24,8 @@
     },
     "provider_fields": {
         "structures": [
-            "hull_distance",
-            "formation_energy"
+            {"name": "hull_distance", "unit": "eV/atom", "type": "float", "description": "The distance that this structure lies from the global convex hull spanned by all other structures in the database."},
+            {"name": "formation_energy", "type": "float", "description": "The formation energy of the structure, computed versus the elemental chemical potentials.", "unit": "eV/atom",},
         ]
     }
 }

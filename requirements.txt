@@ -1,10 +1,12 @@
-optimade[server]~=0.22
+git+https://github.com/Materials-Consortia/optimade-python-tools@0fa47b6
+fastapi==0.98.0
+mongomock==4.1.2
+pymongo==4.4.1
 uvicorn[standard]
 matador-db>=0.9
 gunicorn>=20.0.4
 aiofiles>=0.4.0
-Jinja2==2.11.3
-markupsafe==2.0.1
+Jinja2
 invoke>=1.4
 pre-commit~=2.18
 flake8

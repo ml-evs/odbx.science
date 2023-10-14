@@ -13,6 +13,7 @@ from optimade.models import (
     StructureResponseOne,
     StructureResponseMany,
 )
+from optimade.models.jsonapi import Response
 from optimade.server.config import CONFIG
 from optimade.server.query_params import SingleEntryQueryParams, EntryListingQueryParams
 from optimade.server.routers.utils import get_single_entry, get_entries
@@ -70,10 +71,20 @@ def get_structures(request: Request, params: EntryListingQueryParams = Depends()
         context.update(query_error=exc, query_str=str(request.url).split("filter=")[-1])
 
         return TEMPLATES.TemplateResponse("error.html", context)
+    
+    if isinstance(response, dict):
+        context.update(query=response.get("meta", {}).query.representation)
+    else:
+        context.update(query=response.meta.query.representation)
 
-    context.update(query=response.meta.query.representation)
+    if isinstance(response, dict):
+        data_returned = response.get("meta", {}).data_returned
+        data = response.get("data", [])
+    else:
+        data_returned = response.meta.data_returned
+        data = response.data
 
-    if response.meta.data_returned < 1:
+    if data_returned < 1:
         return TEMPLATES.TemplateResponse("no_structures_found.html", context)
 
     context.update(
@@ -81,9 +92,9 @@ def get_structures(request: Request, params: EntryListingQueryParams = Depends()
             "odbx_title": "odbx",
             "odbx_blurb": "the open database of xtals",
             "odbx_about": 'odbx is a public database of crystal structures from the group of <a href="https://ajm143.github.io">Dr Andrew Morris</a> at the University of Birmingham.',
-            "data_available": response.meta.data_returned,
-            "results": response.data,
-            "n_results": len(response.data),
+            "data_available": data_returned,
+            "results": data,
+            "n_results": len(data),
         }
     )
 
@@ -110,8 +121,8 @@ def get_single_structure(
 
     context = {"request": request, "entry_id": entry_id}
 
-    if response.meta.data_returned < 1:
-        return TEMPLATES.TemplateResponse("structure_not_found.html", context)
+    if isinstance(response, dict):
+        response = Response(**response)
 
     stoichiometry = get_stoich_from_formula(
         response.data.attributes.chemical_formula_descriptive

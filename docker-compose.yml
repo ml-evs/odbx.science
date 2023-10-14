@@ -68,6 +68,21 @@ services:
       - ./logs:/app/logs/
     networks:
       - nginx
+  
+  odbx_rest_electrides:
+    build:
+      context: .
+      dockerfile: .docker/odbx_rest_electrides_Dockerfile
+    environment:
+      MAIN: main
+      OPTIMADE_CONFIG_FILE: /app/production_config.json
+    depends_on:
+      - mongo
+    volumes:
+      - sockets:/tmp/
+      - ./logs:/app/logs/
+    networks:
+      - nginx
 
   odbx_rest_misc:
     restart: always

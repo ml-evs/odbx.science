@@ -1,9 +1,7 @@
-git+https://github.com/Materials-Consortia/optimade-python-tools@0fa47b6
-fastapi==0.98.0
-mongomock==4.1.2
-pymongo==4.4.1
+optimade[server]==1.0.0
 uvicorn[standard]
-matador-db>=0.9
+git+https://github.com/ml-evs/matador@7b4e2a0fae2d96946af466c048fa5f7622607ea2
+numpy
 gunicorn>=20.0.4
 aiofiles>=0.4.0
 Jinja2

@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel, Field, conint, validator
+from pydantic import BaseModel, Field
 from typing import List, Optional, Tuple, Union
 from optimade.models import (
     StructureResource,
@@ -35,7 +35,7 @@ class MatadorSpaceGroup(BaseModel):
         ..., description="""The symmetry tolerance used to compute the space group."""
     )
 
-    number: Optional[conint(gt=0, lt=231)] = Field(
+    number: int = Field(
         None, description="""The ITA space group number from 1-230."""
     )
 
@@ -105,18 +105,6 @@ class MatadorStructureResourceAttributes(StructureResourceAttributes):
     calculation_date: Optional[datetime.datetime] = Field(
         None, description="""Date on which calculation was performed."""
     )
-
-    @validator("stress_tensor", whole=True)
-    def check_stress(cls, v):
-        if v is not None:
-            check_shape(v, (3, 3), "stress_tensor")
-        return v
-
-    @validator("forces", whole=True)
-    def check_forces(cls, v, values):
-        if v is not None:
-            check_shape(v, (values.get("nsites"), 3), "forces")
-        return v
 
     class Config:
         alias_generator = prefix_provider

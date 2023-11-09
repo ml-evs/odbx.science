@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import Field, EmailStr
+from pydantic import Field
 from optimade.models.references import Person
 
 __all__ = ["MatadorPerson"]
@@ -8,12 +8,12 @@ __all__ = ["MatadorPerson"]
 class MatadorPerson(Person):
     """Container for a person."""
 
-    email: EmailStr = Field(
+    email: str = Field(
         ...,
         description="""Email address of the submitted, at the time of entry creation.""",
     )
 
-    forwarding_email: Optional[EmailStr] = Field(
+    forwarding_email: Optional[str] = Field(
         None,
         description="""Optional contact email for the person, valid at the last modification time.""",
     )

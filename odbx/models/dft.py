@@ -1,6 +1,6 @@
 from typing import Optional, List
 from enum import Enum
-from pydantic import Field, validator, BaseModel
+from pydantic import Field, BaseModel
 
 __all__ = [
     "MatadorPseudopotentialType",
@@ -108,12 +108,6 @@ class MatadorHamiltonian(BaseModel):
     geom_force_tol: Optional[float] = Field(
         None, description="""The target force attempted by the relaxer."""
     )
-
-    @validator("external_pressure", whole=True)
-    def check_pressure(cls, v):
-        if v is not None:
-            check_shape(v, (3, 3), "external_pressure")
-        return v
 
 
 class MatadorCalculator(BaseModel):

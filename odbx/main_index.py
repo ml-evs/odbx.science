@@ -39,7 +39,7 @@ app = FastAPI(
 )
 
 
-if not CONFIG.use_real_mongo and CONFIG.index_links_path.exists():
+if CONFIG.index_links_path.exists():
     import bson.json_util
     from optimade.server.routers.links import links_coll
     from optimade.server.routers.utils import mongo_id_for_database

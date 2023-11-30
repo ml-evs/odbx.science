@@ -1,0 +1,30 @@
+{
+    "debug": false,
+    "insert_test_data": false,
+    "database_backend": "mongodb",
+    "mongo_database": "optimade-gnome",
+    "mongo_uri": "mongodb://%2Ftmp%2Fmongodb-27018.sock",
+    "links_collection": "links",
+    "references_collection": "references",
+    "structures_collection": "structures",
+    "default_db": "odbx",
+    "base_url": "https://optimade-gnome.odbx.science",
+    "implementation": {
+        "name": "optimade-python-tools (modified for odbx.science)",
+        "source_url": "https://github.com/ml-evs/odbx.science",
+        "maintainer": {"email": "web@odbx.science"},
+        "issue_tracker": "https://github.com/ml-evs/odbx.science/issues",
+        "version": "0.1"
+    },
+    "provider": {
+        "name": "Gnome",
+        "description": "A re-up of the Gnome database.",
+        "prefix": "gnome",
+        "homepage": "https://github.com/google-deepmind/materials_discovery"
+    },
+    "provider_fields": {
+        "structures": [
+            "_gnome_material_id", "_gnome_formation_energy_per_atom", "_gnome_decomposition_energy_per_atom"
+        ]
+    }
+}

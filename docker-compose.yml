@@ -146,6 +146,20 @@ services:
       - ./logs:/app/logs/
     networks:
       - nginx
+  
+  tmdne:
+    build:
+      context: this-material-does-not-exist
+      dockerfile: Dockerfile
+    volumes:
+      - ./results:/app/results
+    environment:
+      RESULTS_PATH: /app/results/results.csv
+    ports:
+      - '8050:8050'
+    networks:
+      - nginx
+
 
   mongo:
     restart: always

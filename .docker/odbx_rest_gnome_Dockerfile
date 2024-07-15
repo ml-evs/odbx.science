@@ -1,4 +1,4 @@
-FROM ghcr.io/materials-consortia/optimade:0.25.3
+FROM ghcr.io/materials-consortia/optimade:1.0.5
 
 COPY optimade_gnome.json /app/production_config.json
 RUN pip install gunicorn

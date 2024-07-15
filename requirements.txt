@@ -1,4 +1,4 @@
-optimade[server]==1.0.0
+optimade[server]==1.0.4
 uvicorn[standard]
 git+https://github.com/ml-evs/matador@7b4e2a0fae2d96946af466c048fa5f7622607ea2
 numpy

@@ -18,7 +18,7 @@
     },
     "provider": {
         "name": "Gnome",
-        "description": "A re-up of the Gnome database.",
+        "description": "An unoffiical OPTIMADE API for the Gnome dataset from Google Deepmind (CC-BY NC). Full terms of use can be found on the project homepage.",
         "prefix": "gnome",
         "homepage": "https://github.com/google-deepmind/materials_discovery"
     },

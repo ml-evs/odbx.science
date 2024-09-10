@@ -7,3 +7,6 @@
 [submodule "this-material-does-not-exist"]
 	path = this-material-does-not-exist
 	url = git@github.com:ml-evs/this-material-does-not-exist
+[submodule "optimade-gnome"]
+	path = optimade-gnome
+	url = git@github.com:ml-evs/optimade-gnome

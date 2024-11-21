@@ -84,24 +84,6 @@ services:
     networks:
       - nginx
 
-
-  odbx_rest_test:
-    restart: always
-    build:
-      context: .
-      dockerfile: .docker/odbx_rest_test_Dockerfile
-    environment:
-      MAIN: main
-      OPTIMADE_CONFIG_FILE: /app/optimade_test_config.json
-    depends_on:
-      - mongo
-    volumes:
-      - sockets:/tmp/
-      - ./logs:/app/logs/
-      - /data/structure_repository/:/data/
-    networks:
-      - nginx
-
   odbx_index:
     restart: always
     build:

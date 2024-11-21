@@ -1,9 +1,6 @@
 [submodule "optimade-misc-datasets"]
 	path = optimade-misc-datasets
 	url = git@github.com:ml-evs/optimade-misc-datasets
-[submodule "A2BC2-electrides"]
-	path = A2BC2-electrides
-	url = git@github.com:ml-evs/A2BC2-electrides
 [submodule "this-material-does-not-exist"]
 	path = this-material-does-not-exist
 	url = git@github.com:ml-evs/this-material-does-not-exist

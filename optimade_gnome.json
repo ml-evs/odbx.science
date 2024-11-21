@@ -24,7 +24,7 @@
     },
     "provider_fields": {
         "structures": [
-            "_gnome_material_id", "_gnome_formation_energy_per_atom", "_gnome_decomposition_energy_per_atom"
+            "_gnome_material_id", "_gnome_formation_energy_per_atom", "_gnome_decomposition_energy_per_atom", "_gnome_bandgap", "_gnome_space_group_symbol_hermann_mauguin", "_gnome_space_group_it_number",
         ]
     }
 }

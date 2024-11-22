@@ -1,16 +1,16 @@
 {
     "debug": false,
-    "insert_test_data": false,
+    "insert_test_data": true,
     "database_backend": "mongomock",
     "links_collection": "links",
     "index_links_path": "./odbx_index_links.json",
     "page_limit": 10,
     "default_db": "odbx",
     "base_url": "https://optimade-index.odbx.science",
+    "validate_api_response": false,
     "implementation": {
         "name": "optimade-python-tools (configured for odbx.science)",
         "source_url": "https://github.com/ml-evs/odbx.science",
-        "maintainer": {"email": "web@odbx.science"},
         "issue_tracker": "https://github.com/ml-evs/odbx.science/issues",
         "version": "0.1"
     },

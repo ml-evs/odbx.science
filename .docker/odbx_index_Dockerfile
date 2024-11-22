@@ -1,17 +1,11 @@
-FROM python:3.9.6
-
+FROM ghcr.io/materials-consortia/optimade:1.1.5
 WORKDIR /app
-
-# copy repo contents and install deps
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
-COPY odbx ./odbx
-
-ENV PYTHONPATH "/app/"
-
 # copy configs and startup scripts
 COPY optimade_index_config.json odbx_index_links.json README.md ./
 COPY scripts/start_index_server.sh ./run.sh
+RUN pip install gunicorn>=20
 
 # run web server
+ENV MAIN="main_index"
+ENV OPTIMADE_CONFIG_FILE="/app/optimade_index_config.json"
 CMD ["/app/run.sh"]

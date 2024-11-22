@@ -2,26 +2,6 @@
   {
     "type": "links",
     "link_type": "child",
-    "id": "odbx",
-    "name": "odbx",
-    "description": "The Open Database of Xtals is run by the group of Dr Andrew Morris at the universities of Birmingham and Cambridge and is constructed using the matador library.",
-    "base_url": "https://optimade.odbx.science",
-    "homepage": "https://odbx.science",
-    "aggregate": "ok"
-  },
-  {
-    "type": "links",
-    "link_type": "child",
-    "id": "odbx_misc",
-    "name": "Miscellaneous Materials Discovery Data",
-    "description": "Miscellaneous Materials Discovery Datasets, hosted as an OPTIMADE API (temporarily).",
-    "base_url": "https://optimade-misc.odbx.science",
-    "homepage": "https://github.com/ml-evs/optimade-misc-datasets",
-    "aggregate": "ok"
-  },
-  {
-    "type": "links",
-    "link_type": "child",
     "id": "gnome",
     "name": "Google DeepMind's Gnome Dataset",
     "description": "An OPTIMADE API for the recent dataset released by Google DeepMind containing 340k new on-hull materials, according to PBE.",

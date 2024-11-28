@@ -1,3 +1,3 @@
-FROM mongo:3.6-xenial
+FROM mongo:4.0-xenial
 
 COPY .docker/mongod.conf /etc/mongod.conf
